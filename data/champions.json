@@ -75,5 +75,60 @@
     "cost": 1,
     "image": "images/Jax.jpg",
     "traits": ["엑소테크", "요새"]
+  },
+  {
+    "id": "kogMaw",
+    "name": "코그모",
+    "cost": 1,
+    "image": "images/KogMaw.jpg",
+    "traits": ["폭발 봇", "속사포"]
+  },
+  {
+    "id": "kindred",
+    "name": "킨드레드",
+    "cost": 1,
+    "image": "images/Kindred.jpg",
+    "traits": ["니트로", "사격수", "속사포"]
+  },
+  {
+    "id": "graves",
+    "name": "그레이브즈",
+    "cost": 2,
+    "image": "images/Graves.jpg",
+    "traits": ["황금 황소", "처형자"]
+  },
+  {
+    "id": "naafiri",
+    "name": "나피리",
+    "cost": 2,
+    "image": "images/Naafiri.jpg",
+    "traits": ["엑소테크", "증.폭."]
+  },
+  {
+    "id": "darius",
+    "name": "다리우스",
+    "cost": 2,
+    "image": "images/Darius.jpg",
+    "traits": ["범죄 조직", "난동꾼"]
+  },
+  {
+    "id": "rhaast",
+    "name": "라아스트",
+    "cost": 2,
+    "image": "images/Rhaast.jpg",
+    "traits": ["신성기업", "선봉대"]
+  },
+  {
+    "id": "leblanc",
+    "name": "르블랑",
+    "cost": 2,
+    "image": "images/Leblanc.jpg",
+    "traits": ["사이퍼", "책략가"]
+  },
+  {
+    "id": "veigar",
+    "name": "베이가",
+    "cost": 2,
+    "image": "images/Veigar.jpg",
+    "traits": ["사이버보스", "기술광"]
   }
-]
