@@ -1,0 +1,16 @@
+[
+  {
+    "id": "garen",
+    "name": "가렌",
+    "cost": 1,
+    "image": "images/garen.png",
+    "traits": ["warlord", "vanguard"]
+  },
+  {
+    "id": "nidalee",
+    "name": "니달리",
+    "cost": 1,
+    "image": "images/nidalee.png",
+    "traits": ["warlord", "sharpshooter"]
+  }
+]
