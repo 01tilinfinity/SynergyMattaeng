@@ -1,0 +1,25 @@
+.selected-container,
+.champion-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.champion-card,
+.selected-slot {
+  width: 80px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid gray;
+  border-radius: 6px;
+  padding: 4px;
+  background-color: #222;
+  color: white;
+}
+
+.champion-card img,
+.selected-slot img {
+  width: 100%;
+  height: auto;
+}

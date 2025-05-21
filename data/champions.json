@@ -1,16 +1,79 @@
 [
   {
-    "id": "garen",
-    "name": "가렌",
-    "cost": 1,
-    "image": "images/Garen.jpg",
-    "traits": ["warlord", "vanguard"]
-  },
-  {
     "id": "nidalee",
     "name": "니달리",
     "cost": 1,
     "image": "images/Nidalee.jpg",
-    "traits": ["warlord", "sharpshooter"]
+    "traits": ["니트로", "증.폭."]
+  },
+  {
+    "id": "morgana",
+    "name": "모르가나",
+    "cost": 1,
+    "image": "images/Morgana.jpg",
+    "traits": ["신성기업", "다이나모"]
+  },
+  {
+    "id": "drMundo",
+    "name": "문도 박사",
+    "cost": 1,
+    "image": "images/DrMundo.jpg",
+    "traits": ["거리의 악마", "난동꾼", "학살자"]
+  },
+  {
+    "id": "vi",
+    "name": "바이",
+    "cost": 1,
+    "image": "images/Vi.jpg",
+    "traits": ["사이퍼", "선봉대"]
+  },
+  {
+    "id": "poppy",
+    "name": "뽀삐",
+    "cost": 1,
+    "image": "images/Poppy.jpg",
+    "traits": ["사이버보스", "요새"]
+  },
+  {
+    "id": "sylas",
+    "name": "사일러스",
+    "cost": 1,
+    "image": "images/Sylas.jpg",
+    "traits": ["동물특공대", "선봉대"]
+  },
+  {
+    "id": "shaco",
+    "name": "샤코",
+    "cost": 1,
+    "image": "images/Shaco.jpg",
+    "traits": ["범죄 조직", "학살자"]
+  },
+  {
+    "id": "seraphine",
+    "name": "세라핀",
+    "cost": 1,
+    "image": "images/Seraphine.jpg",
+    "traits": ["동물특공대", "기술광"]
+  },
+  {
+    "id": "alistar",
+    "name": "알리스타",
+    "cost": 1,
+    "image": "images/Alistar.jpg",
+    "traits": ["황금 황소", "난동꾼"]
+  },
+  {
+    "id": "zyra",
+    "name": "자이라",
+    "cost": 1,
+    "image": "images/Zyra.jpg",
+    "traits": ["거리의 악마", "기술광"]
+  },
+  {
+    "id": "jax",
+    "name": "잭스",
+    "cost": 1,
+    "image": "images/Jax.jpg",
+    "traits": ["엑소테크", "요새"]
   }
 ]
