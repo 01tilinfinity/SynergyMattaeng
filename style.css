@@ -83,20 +83,69 @@ body {
 }
 
 .synergy-bar {
-  margin-bottom: 16px;
-  padding: 8px;
-  background-color: #fff;
-  border: 2px solid #eee;
-  border-radius: 8px;
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
-.synergy-item {
-  background-color: #ffd54f;
-  padding: 4px 8px;
-  border-radius: 999px;
+.synergy-block {
+  background: #1e1e1e;
+  padding: 10px;
+  border-radius: 8px;
+  width: 140px;
+  color: white;
+  font-family: "Pretendard", sans-serif;
+}
+
+.synergy-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.synergy-icon-wrapper {
+  position: relative;
+  width: 28px;
+  height: 28px;
+}
+
+.synergy-count {
+  font-size: 16px;
+  font-weight: bold;
+  width: 20px;
+  text-align: center;
+}
+
+.synergy-name {
+  flex-grow: 1;
   font-size: 14px;
   font-weight: bold;
+}
+
+.synergy-steps {
+  display: flex;
+  gap: 2px;
+  font-size: 12px;
+  color: #aaa;
+  justify-content: center;
+}
+
+.synergy-steps .step.active {
+  font-weight: bold;
+  color: white;
+}
+
+.synergy-steps .step-arrow {
+  font-weight: normal;
+  color: #888;
+}
+
+.synergy-block.darken .synergy-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #aaa;
 }
