@@ -1,0 +1,44 @@
+{
+  "증.폭.": {
+    "name_kr": "증.폭.",
+    "thresholds": [2, 3, 4, 5],
+    "colors": ["bronze", "silver", "silver", "gold"],
+    "icon": "aMP.svg"
+  },
+  "동물특공대": {
+    "name_kr": "동물특공대",
+    "thresholds": [3, 5, 7, 10],
+    "colors": ["bronze", "silver", "gold", "chromatic"],
+    "icon": "animaSquad.svg"
+  },
+  "요새": {
+    "name_kr": "요새",
+    "thresholds": [2, 4, 6],
+    "colors": ["bronze", "silver", "gold"],
+    "icon": "bastion.svg"
+  },
+  "폭발 봇": {
+    "name_kr": "폭발 봇",
+    "thresholds": [2, 4, 6],
+    "colors": ["bronze", "silver", "gold"],
+    "icon": "boomBots.svg"
+  },
+  "난동꾼": {
+    "name_kr": "난동꾼",
+    "thresholds": [2, 4, 6],
+    "colors": ["bronze", "silver", "gold"],
+    "icon": "bruiser.svg"
+  },
+  "사이버보스": {
+    "name_kr": "사이버보스",
+    "thresholds": [2, 3, 4],
+    "colors": ["bronze", "silver", "gold"],
+    "icon": "cyberboss.svg"
+  },
+  "사이퍼": {
+    "name_kr": "사이퍼",
+    "thresholds": [3, 4, 5],
+    "colors": ["bronze", "silver", "gold"],
+    "icon": "cypher.svg"
+  }
+}

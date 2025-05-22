@@ -35,6 +35,7 @@ function createChampionCard(champion) {
 
     selectedChampions.push(champion);
     renderSelectedChampions();
+    renderSynergyBar();
   });
 
   return card;
@@ -62,6 +63,7 @@ function renderSelectedChampions() {
     slot.addEventListener("click", () => {
       selectedChampions.splice(index, 1);
       renderSelectedChampions();
+      renderSynergyBar();
     });
 
     container.appendChild(slot);
@@ -74,6 +76,7 @@ export async function renderWritePage() {
     <h1>챔피언 선택</h1>
     <input id="deck-name" type="text" placeholder="덱 이름을 입력하세요" />
     <h3>선택한 챔피언 (최대 10명)</h3>
+    <div id="synergy-bar" class="synergy-bar"></div>
     <div id="selected-champions" class="selected-container"></div>
     <h3>챔피언 목록</h3>
     <div id="champion-list" class="champion-list"></div>
@@ -90,5 +93,28 @@ export async function renderWritePage() {
   champions.forEach((champ) => {
     const card = createChampionCard(champ);
     list.appendChild(card);
+  });
+}
+
+function renderSynergyBar() {
+  const synergyBar = document.getElementById("synergy-bar");
+  synergyBar.innerHTML = "";
+
+  const traitCount = {};
+
+  selectedChampions.forEach((champ) => {
+    champ.traits.forEach((trait) => {
+      if (!traitCount[trait]) traitCount[trait] = 0;
+      traitCount[trait]++;
+    });
+  });
+
+  const traits = Object.entries(traitCount); // [ [속사포, 2], [선봉대, 3], ... ]
+
+  traits.forEach(([trait, count]) => {
+    const span = document.createElement("span");
+    span.textContent = `${trait} x${count}`;
+    span.className = "synergy-item";
+    synergyBar.appendChild(span);
   });
 }
