@@ -23,7 +23,10 @@ function createChampionCard(champion) {
   // 🟡 카드 클릭 시 선택 처리
   card.addEventListener("click", () => {
     const alreadySelected = selectedChampions.find((c) => c.id === champion.id);
-    if (alreadySelected) return;
+    if (alreadySelected) {
+      alert("이미 덱에 포함된 챔피언입니다!");
+      return;
+    }
 
     if (selectedChampions.length >= 10) {
       alert("챔피언은 최대 10명까지만 선택할 수 있어요!");
