@@ -1,0 +1,236 @@
+[
+  {
+    "id": "nidalee",
+    "name": "니달리",
+    "cost": 1,
+    "traits": ["니트로", "증.폭."]
+  },
+  {
+    "id": "morgana",
+    "name": "모르가나",
+    "cost": 1,
+    "traits": ["신성기업", "다이나모"]
+  },
+  {
+    "id": "drMundo",
+    "name": "문도 박사",
+    "cost": 1,
+    "traits": ["거리의 악마", "난동꾼", "학살자"]
+  },
+  {
+    "id": "vi",
+    "name": "바이",
+    "cost": 1,
+    "traits": ["사이퍼", "선봉대"]
+  },
+  {
+    "id": "poppy",
+    "name": "뽀삐",
+    "cost": 1,
+    "traits": ["사이버보스", "요새"]
+  },
+  {
+    "id": "sylas",
+    "name": "사일러스",
+    "cost": 1,
+    "traits": ["동물특공대", "선봉대"]
+  },
+  {
+    "id": "shaco",
+    "name": "샤코",
+    "cost": 1,
+    "traits": ["범죄 조직", "학살자"]
+  },
+  {
+    "id": "seraphine",
+    "name": "세라핀",
+    "cost": 1,
+    "traits": ["동물특공대", "기술광"]
+  },
+  {
+    "id": "alistar",
+    "name": "알리스타",
+    "cost": 1,
+    "traits": ["황금 황소", "난동꾼"]
+  },
+  {
+    "id": "zyra",
+    "name": "자이라",
+    "cost": 1,
+    "traits": ["거리의 악마", "기술광"]
+  },
+  {
+    "id": "jax",
+    "name": "잭스",
+    "cost": 1,
+    "traits": ["엑소테크", "요새"]
+  },
+  {
+    "id": "kogMaw",
+    "name": "코그모",
+    "cost": 1,
+    "traits": ["폭발 봇", "속사포"]
+  },
+  {
+    "id": "kindred",
+    "name": "킨드레드",
+    "cost": 1,
+    "traits": ["니트로", "사격수", "속사포"]
+  },
+  {
+    "id": "graves",
+    "name": "그레이브즈",
+    "cost": 2,
+    "traits": ["황금 황소", "처형자"]
+  },
+  {
+    "id": "naafiri",
+    "name": "나피리",
+    "cost": 2,
+    "traits": ["엑소테크", "증.폭."]
+  },
+  {
+    "id": "darius",
+    "name": "다리우스",
+    "cost": 2,
+    "traits": ["범죄 조직", "난동꾼"]
+  },
+  {
+    "id": "rhaast",
+    "name": "라아스트",
+    "cost": 2,
+    "traits": ["신성기업", "선봉대"]
+  },
+  {
+    "id": "leblanc",
+    "name": "르블랑",
+    "cost": 2,
+    "traits": ["사이퍼", "책략가"]
+  },
+  {
+    "id": "veigar",
+    "name": "베이가",
+    "cost": 2,
+    "traits": ["사이버보스", "기술광"]
+  },
+  {
+    "id": "vayne",
+    "name": "베인",
+    "cost": 2,
+    "traits": ["동물특공대", "학살자"]
+  },
+  {
+    "id": "shyvana",
+    "name": "쉬바나",
+    "cost": 2,
+    "traits": ["니트로", "기술광", "요새"]
+  },
+  {
+    "id": "skarner",
+    "name": "스카너",
+    "cost": 2,
+    "traits": ["폭발 봇", "선봉대"]
+  },
+  {
+    "id": "ekko",
+    "name": "에코",
+    "cost": 2,
+    "traits": ["거리의 악마", "책략가"]
+  },
+  {
+    "id": "illaoi",
+    "name": "일라오이",
+    "cost": 2,
+    "traits": ["동물특공대", "요새"]
+  },
+  {
+    "id": "jhin",
+    "name": "진",
+    "cost": 2,
+    "traits": ["엑소테크", "다이나모", "사격수"]
+  },
+  {
+    "id": "twistedFate",
+    "name": "트위스티드 페이트",
+    "cost": 2,
+    "traits": ["범죄 조직", "속사포"]
+  },
+  {
+    "id": "galio",
+    "name": "갈리오",
+    "cost": 3,
+    "traits": ["사이퍼", "요새"]
+  },
+  {
+    "id": "gragas",
+    "name": "그라가스",
+    "cost": 3,
+    "traits": ["신성기업", "난동꾼"]
+  },
+  {
+    "id": "draven",
+    "name": "드레이븐",
+    "cost": 3,
+    "traits": ["사이퍼", "속사포"]
+  },
+  {
+    "id": "rengar",
+    "name": "렝가",
+    "cost": 3,
+    "traits": ["거리의 악마", "처형자"]
+  },
+  {
+    "id": "mordekaiser",
+    "name": "모데카이저",
+    "cost": 3,
+    "traits": ["엑소테크", "기술광", "난동꾼"]
+  },
+  {
+    "id": "varus",
+    "name": "바루스",
+    "cost": 3,
+    "traits": ["엑소테크", "처형자"]
+  },
+  {
+    "id": "braum",
+    "name": "브라움",
+    "cost": 3,
+    "traits": ["범죄 조직", "선봉대"]
+  },
+  {
+    "id": "senna",
+    "name": "세나",
+    "cost": 3,
+    "traits": ["신성기업", "학살자"]
+  },
+  {
+    "id": "elise",
+    "name": "엘리스",
+    "cost": 3,
+    "traits": ["니트로", "다이나모"]
+  },
+  {
+    "id": "yuumi",
+    "name": "유미",
+    "cost": 3,
+    "traits": ["동물특공대", "증.폭.", "책략가"]
+  },
+  {
+    "id": "jarvanIV",
+    "name": "자르반 4세",
+    "cost": 3,
+    "traits": ["황금 황소", "선봉대", "학살자"]
+  },
+  {
+    "id": "jinx",
+    "name": "징크스",
+    "cost": 3,
+    "traits": ["거리의 악마", "사격수"]
+  },
+  {
+    "id": "fiddlesticks",
+    "name": "피들스틱",
+    "cost": 3,
+    "traits": ["폭발 봇", "기술광"]
+  }
+]
