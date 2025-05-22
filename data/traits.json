@@ -40,5 +40,113 @@
     "thresholds": [3, 4, 5],
     "colors": ["bronze", "silver", "gold"],
     "icon": "cypher.svg"
+  },
+  "신성기업": {
+    "name_kr": "신성기업",
+    "thresholds": [1, 2, 3, 4, 5, 6, 7],
+    "colors": ["bronze", "silver", "silver", "silver", "gold", "gold", "gold"],
+    "icon": "divinicorp.svg"
+  },
+  "다이나모": {
+    "name_kr": "다이나모",
+    "thresholds": [2, 3, 4],
+    "colors": ["bronze", "silver", "gold"],
+    "icon": "dynamo.svg"
+  },
+  "처형자": {
+    "name_kr": "처형자",
+    "thresholds": [2, 3, 4, 5],
+    "colors": ["bronze", "silver", "silver", "gold"],
+    "icon": "executioner.svg"
+  },
+  "엑소테크": {
+    "name_kr": "엑소테크",
+    "thresholds": [3, 5, 7, 10],
+    "colors": ["bronze", "silver", "gold", "chromatic"],
+    "icon": "exotech.svg"
+  },
+  "네트워크의 신": {
+    "name_kr": "네트워크의 신",
+    "thresholds": [1],
+    "colors": ["unique"],
+    "icon": "godoftheNet.svg"
+  },
+  "황금 황소": {
+    "name_kr": "황금 황소",
+    "thresholds": [2, 4, 6],
+    "colors": ["bronze", "silver", "gold"],
+    "icon": "goldenOx.svg"
+  },
+  "사격수": {
+    "name_kr": "사격수",
+    "thresholds": [2, 4],
+    "colors": ["bronze", "gold"],
+    "icon": "marksman.svg"
+  },
+  "니트로": {
+    "name_kr": "니트로",
+    "thresholds": [3, 4],
+    "colors": ["bronze", "gold"],
+    "icon": "nitro.svg"
+  },
+  "군주": {
+    "name_kr": "군주",
+    "thresholds": [1],
+    "colors": ["unique"],
+    "icon": "overlord.svg"
+  },
+  "속사포": {
+    "name_kr": "속사포",
+    "thresholds": [2, 4, 6],
+    "colors": ["bronze", "silver", "gold"],
+    "icon": "rapidfire.svg"
+  },
+  "학살자": {
+    "name_kr": "학살자",
+    "thresholds": [2, 4, 6],
+    "colors": ["bronze", "silver", "gold"],
+    "icon": "slayer.svg"
+  },
+  "영혼 살해자": {
+    "name_kr": "영혼 살해자",
+    "thresholds": [1],
+    "colors": ["unique"],
+    "icon": "soulKiller.svg"
+  },
+  "책략가": {
+    "name_kr": "책략가",
+    "thresholds": [2, 3, 4, 5],
+    "colors": ["bronze", "silver", "silver", "gold"],
+    "icon": "strategist.svg"
+  },
+  "거리의 악마": {
+    "name_kr": "거리의 악마",
+    "thresholds": [3, 5, 7, 10],
+    "colors": ["bronze", "silver", "gold", "chromatic"],
+    "icon": "streetDemon.svg"
+  },
+  "범죄 조직": {
+    "name_kr": "범죄 조직",
+    "thresholds": [3, 5, 7],
+    "colors": ["bronze", "silver", "gold"],
+    "icon": "syndicate.svg"
+  },
+  "기술광": {
+    "name_kr": "기술광",
+    "thresholds": [2, 4, 6, 8],
+    "colors": ["bronze", "silver", "gold", "gold"],
+    "icon": "techie.svg"
+  },
+  "선봉대": {
+    "name_kr": "선봉대",
+    "thresholds": [2, 4, 6],
+    "colors": ["bronze", "silver", "gold"],
+    "icon": "vanguard.svg"
+  },
+  "바이러스": {
+    "name_kr": "바이러스",
+    "thresholds": [1],
+    "colors": ["unique"],
+    "icon": "virus.svg"
   }
 }
