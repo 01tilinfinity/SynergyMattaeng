@@ -28,15 +28,16 @@ body {
 
 /* 선택된 챔피언 영역 */
 .selected-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5개씩 */
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 .selected-slot {
-  width: 130px;
-  height: 180px; /* 기존보다 20px 늘려서 이름표가 이미지 바깥에 배치될 공간 확보 */
+  width: 180px;
+  height: 220px; /* 카드 + 이름표 포함 높이 */
   box-sizing: border-box;
   position: relative;
   cursor: pointer;
@@ -51,9 +52,8 @@ body {
 }
 
 .selected-image-wrapper {
-  flex-grow: 1;
   width: 100%;
-  height: auto;
+  height: 180px; /* 이미지 정사각형 */
 }
 
 .selected-image {
@@ -85,9 +85,9 @@ body {
 /* 이름표 */
 .selected-name-tag {
   width: 100%;
-  height: 30px;
+  height: 40px;
   box-sizing: border-box;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: bold;
   color: white;
   display: flex;
@@ -117,8 +117,8 @@ body {
 /* 특성 아이콘 */
 .selected-traits {
   position: absolute;
-  top: 4px;
-  left: 4px;
+  top: 5px;
+  left: 5px;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -126,8 +126,8 @@ body {
 
 .trait-icon-wrapper {
   background: #e0e0e0e5;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
   display: flex;
   justify-content: center;
@@ -135,8 +135,9 @@ body {
 }
 
 .trait-icon {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
+  opacity: 90%;
 }
 
 /* 챔피언 목록 */
