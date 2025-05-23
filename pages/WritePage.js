@@ -4,38 +4,28 @@ let selectedChampions = [];
 
 function createChampionCard(champion) {
   const card = document.createElement("div");
-  card.className = "champion-card";
+  card.className = `champion-card cost-${champion.cost}`; // ✅ 코스트별 클래스
 
-  const img = document.createElement("img");
-  img.src = champion.image;
-  img.alt = champion.name;
+  card.innerHTML = `
+    <div class="champion-image-wrapper">
+      <img class="champion-image" src="${champion.image}" alt="${champion.name}" />
+      <div class="champion-cost-tag">$${champion.cost}</div>  <!-- 우측 상단 -->
+      <div class="champion-name">${champion.name}</div>       <!-- 하단 이름 -->
+    </div>
+  `;
 
-  const name = document.createElement("p");
-  name.textContent = champion.name;
-
-  const cost = document.createElement("p");
-  cost.textContent = `Cost: ${champion.cost}`;
-
-  card.appendChild(img);
-  card.appendChild(name);
-  card.appendChild(cost);
-
-  // 🟡 카드 클릭 시 선택 처리
   card.addEventListener("click", () => {
-    const alreadySelected = selectedChampions.find((c) => c.id === champion.id);
-    if (alreadySelected) {
+    if (selectedChampions.find((c) => c.id === champion.id)) {
       alert("이미 덱에 포함된 챔피언입니다!");
       return;
     }
-
     if (selectedChampions.length >= 10) {
       alert("챔피언은 최대 10명까지만 선택할 수 있어요!");
       return;
     }
 
     selectedChampions.push(champion);
-    renderSelectedChampions();
-    loadTraitsAndRenderSynergy();
+    ensureTraitsAndRenderAll(); // ✅ 이걸로 교체!
   });
 
   return card;
@@ -49,21 +39,34 @@ function renderSelectedChampions() {
     const slot = document.createElement("div");
     slot.className = "selected-slot";
 
-    const img = document.createElement("img");
-    img.src = champion.image;
-    img.alt = champion.name;
+    slot.innerHTML = `
+      <div class="selected-card cost-${champion.cost}">
+        <div class="selected-image-wrapper">
+          <img src="${champion.image}" class="selected-image" alt="${
+      champion.name
+    }" />
+          <div class="selected-traits">
+            ${champion.traits
+              .map(
+                (trait) => `
+              <div class="trait-icon-wrapper">
+                <img src="assets/traits/${
+                  traitsData[trait]?.icon || "default.svg"
+                }" class="trait-icon" alt="${trait}" />
+              </div>
+            `
+              )
+              .join("")}
+          </div>
+        </div>
+        <div class="selected-name-tag">${champion.name}</div>
+      </div>
+    `;
 
-    const name = document.createElement("p");
-    name.textContent = champion.name;
-
-    slot.appendChild(img);
-    slot.appendChild(name);
-
-    // 🟠 클릭하면 제거
+    // 🔁 클릭 시 제거
     slot.addEventListener("click", () => {
       selectedChampions.splice(index, 1);
-      renderSelectedChampions();
-      loadTraitsAndRenderSynergy();
+      ensureTraitsAndRenderAll(); // 여기서도 교체!
     });
 
     container.appendChild(slot);
@@ -121,18 +124,56 @@ function renderSynergyBar() {
     });
   });
 
+  const tierPriority = {
+    unique: 0,
+    chromatic: 1,
+    gold: 2,
+    silver: 3,
+    bronze: 4,
+    darken: 5,
+  };
+
+  const traitArray = Object.entries(traitCount)
+    .map(([trait, count]) => {
+      const traitInfo = traitsData[trait];
+      if (!traitInfo) return null;
+
+      const thresholds = traitInfo.thresholds;
+      const colors = traitInfo.colors;
+      const tierIndex = thresholds.findLastIndex((t) => count >= t);
+      const tierColor = tierIndex === -1 ? "darken" : colors[tierIndex];
+
+      return {
+        name: trait,
+        count,
+        tier: tierColor,
+        tierOrder: tierPriority[tierColor],
+        icon: traitInfo.icon,
+        thresholds,
+        activeTierIndex: tierIndex,
+      };
+    })
+    .filter(Boolean);
+
+  // ✅ 정렬 수행
+  traitArray.sort((a, b) => {
+    if (a.tierOrder !== b.tierOrder) return a.tierOrder - b.tierOrder;
+    if (a.count !== b.count) return b.count - a.count;
+    return a.name.localeCompare(b.name, "ko");
+  });
+
   // 2. traits 순회
-  Object.entries(traitCount).forEach(([trait, count]) => {
-    const traitInfo = traitsData[trait];
-    if (!traitInfo) return;
+  traitArray.forEach((traitData) => {
+    const {
+      name: trait,
+      count,
+      thresholds,
+      tier: tierColor,
+      activeTierIndex: tierIndex,
+      icon: iconName,
+    } = traitData;
 
-    const thresholds = traitInfo.thresholds;
-    const colors = traitInfo.colors;
-
-    const tierIndex = thresholds.findLastIndex((t) => count >= t);
-    const tierColor = tierIndex === -1 ? "darken" : colors[tierIndex];
-
-    const iconSrc = `assets/traits/${traitInfo.icon}`;
+    const iconSrc = `assets/traits/${iconName}`;
     const bgSrc = `assets/trait-backgrounds/${tierColor}.svg`;
 
     const block = document.createElement("div");
@@ -168,7 +209,7 @@ function renderSynergyBar() {
 
       const nameSpan = document.createElement("span");
       nameSpan.className = "synergy-name";
-      nameSpan.textContent = `${trait} ${count}/${thresholds[0]}`;
+      nameSpan.textContent = `${trait} ${count} / ${thresholds[0]}`;
 
       header.appendChild(iconWrapper);
       header.appendChild(nameSpan);
@@ -238,4 +279,15 @@ function renderSynergyBar() {
       synergyBar.appendChild(block);
     }
   });
+}
+
+async function ensureTraitsAndRenderAll() {
+  // traitsData가 비어 있으면 fetch
+  if (!traitsData || Object.keys(traitsData).length === 0) {
+    const res = await fetch("data/traits.json");
+    traitsData = await res.json();
+  }
+
+  renderSelectedChampions();
+  renderSynergyBar();
 }

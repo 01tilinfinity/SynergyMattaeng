@@ -246,12 +246,6 @@
     "traits": ["동물특공대", "선봉대"]
   },
   {
-    "id": "neeko",
-    "name": "니코",
-    "cost": 4,
-    "traits": ["거리의 악마", "책략가"]
-  },
-  {
     "id": "missFortune",
     "name": "미스 포츈",
     "cost": 4,
