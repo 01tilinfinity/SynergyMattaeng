@@ -4,15 +4,48 @@ let selectedChampions = [];
 
 function createChampionCard(champion) {
   const card = document.createElement("div");
-  card.className = `champion-card cost-${champion.cost}`; // ✅ 코스트별 클래스
+  card.className = "champion-card";
 
   card.innerHTML = `
     <div class="champion-image-wrapper">
-      <img class="champion-image" src="${champion.image}" alt="${champion.name}" />
-      <div class="champion-cost-tag">$${champion.cost}</div>  <!-- 우측 상단 -->
-      <div class="champion-name">${champion.name}</div>       <!-- 하단 이름 -->
+      <img src="${champion.image}" class="champion-image" alt="${champion.name}" />
+      <div class="champion-hover-overlay"></div>
     </div>
+    <p class="champion-name">${champion.name}</p>
+    <div class="champion-cost-tag">$${champion.cost}</div>
   `;
+
+  const overlay = card.querySelector(".champion-hover-overlay");
+  const traitGroup = document.createElement("div");
+  traitGroup.className = "hover-trait-group";
+
+  champion.traits.forEach((trait) => {
+    const traitInfo = traitsData[trait];
+    if (!traitInfo) return;
+
+    const row = document.createElement("div");
+    row.className = "hover-trait-row";
+
+    const iconWrapper = document.createElement("div");
+    iconWrapper.className = "hover-trait-icon-wrapper";
+
+    const icon = document.createElement("img");
+    icon.className = "hover-trait-icon";
+    icon.src = `assets/traits/${traitInfo.icon}`;
+    icon.alt = trait;
+    icon.title = trait;
+
+    const label = document.createElement("span");
+    label.className = "hover-trait-label";
+    label.textContent = trait;
+
+    iconWrapper.appendChild(icon);
+    row.appendChild(iconWrapper);
+    row.appendChild(label);
+    traitGroup.appendChild(row);
+  });
+
+  overlay.appendChild(traitGroup);
 
   card.addEventListener("click", () => {
     if (selectedChampions.find((c) => c.id === champion.id)) {
@@ -23,9 +56,9 @@ function createChampionCard(champion) {
       alert("챔피언은 최대 10명까지만 선택할 수 있어요!");
       return;
     }
-
     selectedChampions.push(champion);
-    ensureTraitsAndRenderAll(); // ✅ 이걸로 교체!
+    renderSelectedChampions();
+    renderSynergyBar();
   });
 
   return card;
@@ -48,7 +81,9 @@ function renderSelectedChampions() {
     slot.innerHTML = `
       <div class="selected-card cost-${champion.cost}">
         <div class="selected-image-wrapper">
-          <img src="${champion.hqImage}" class="selected-image" alt="${champion.name}" />
+          <img src="${champion.hqImage}" class="selected-image" alt="${
+      champion.name
+    }" />
           <div class="selected-traits">
             ${champion.traits
               .map(
@@ -68,7 +103,7 @@ function renderSelectedChampions() {
     `;
 
     slot.addEventListener("click", () => {
-      selectedChampions.splice(index, 1);
+      selectedChampions = selectedChampions.filter((c) => c.id !== champion.id);
       ensureTraitsAndRenderAll();
     });
 
@@ -90,28 +125,24 @@ export async function renderWritePage() {
 
   console.log("[DEBUG] renderWritePage 시작");
 
+  // ✅ traitsData 먼저 불러오기!
+  const traitsRes = await fetch("data/traits.json");
+  traitsData = await traitsRes.json();
+
   const champions = await getChampions();
   console.log("[DEBUG] 불러온 챔피언 수:", champions.length);
-  console.log(champions); // 챔피언 데이터 확인
+  console.log(champions);
 
   const list = document.getElementById("champion-list");
-
   champions.forEach((champ) => {
     const card = createChampionCard(champ);
     list.appendChild(card);
   });
+
+  renderSynergyBar(); // 시너지 바로 렌더링
 }
 
 let traitsData = {};
-
-function loadTraitsAndRenderSynergy() {
-  fetch("data/traits.json")
-    .then((res) => res.json())
-    .then((data) => {
-      traitsData = data;
-      renderSynergyBar();
-    });
-}
 
 function renderSynergyBar() {
   const synergyBar = document.getElementById("synergy-bar");
