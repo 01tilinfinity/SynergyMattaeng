@@ -8,7 +8,15 @@ function renderAuthArea() {
   const username = sessionStorage.getItem("username");
 
   if (username) {
-    authArea.innerHTML = `<span style="font-weight: bold;">${username} 님 안뇽하세용 👋</span>`;
+    authArea.innerHTML = `
+      <span style="font-weight: bold;">${username} 님 안뇽하세용 👋</span>
+      <button id="logout-btn">로그아웃</button>
+    `;
+    document.getElementById("logout-btn").addEventListener("click", () => {
+      sessionStorage.removeItem("username");
+      renderAuthArea();
+      alert("로그아웃 되었습니다!");
+    });
   } else {
     authArea.innerHTML = `
       <button id="login-btn">로그인</button>
@@ -18,6 +26,7 @@ function renderAuthArea() {
     document.getElementById("signup-btn").addEventListener("click", showSignupModal);
   }
 }
+
 
 function showLoginModal() {
   const modal = document.createElement("div");
