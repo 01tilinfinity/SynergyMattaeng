@@ -28,10 +28,10 @@ body {
 
 /* 선택된 챔피언 영역 */
 .selected-container {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 5개씩 */
-  gap: 10px;
-  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: flex-start;
   margin-bottom: 20px;
 }
 
@@ -41,6 +41,7 @@ body {
   box-sizing: border-box;
   position: relative;
   cursor: pointer;
+  flex: 0 0 calc(19.2% - 13px); /* ✅ 5개 기준 (100% / 5 - gap 보정) */
 }
 
 .selected-card {
@@ -87,8 +88,13 @@ body {
   width: 100%;
   height: 40px;
   box-sizing: border-box;
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 17px;
+  font-weight: 600;
+  text-align: center;
+  white-space: normal;
+  word-break: keep-all;
+  line-break: strict;
+  letter-spacing: 1px;
   color: white;
   display: flex;
   justify-content: center;
@@ -117,17 +123,17 @@ body {
 /* 특성 아이콘 */
 .selected-traits {
   position: absolute;
-  top: 5px;
-  left: 5px;
+  top: 7px;
+  left: 7px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .trait-icon-wrapper {
-  background: #e0e0e0e5;
-  width: 40px;
-  height: 40px;
+  background: #ffffffad;
+  width: 38px;
+  height: 38px;
   clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
   display: flex;
   justify-content: center;
@@ -135,9 +141,9 @@ body {
 }
 
 .trait-icon {
-  width: 30px;
-  height: 30px;
-  opacity: 90%;
+  width: 28px;
+  height: 28px;
+  opacity: 80%;
 }
 
 /* 챔피언 목록 */
@@ -149,7 +155,7 @@ body {
 
 .champion-card {
   position: relative;
-  width: 80px;
+  width: 85px;
   height: 100px;
   border-radius: 6px;
   overflow: hidden;
@@ -228,7 +234,7 @@ body {
 /* ✅ 챔피언 이름 (하단 흰 글씨 + 검정 테두리) */
 .champion-name {
   position: absolute;
-  bottom: 4px;
+  bottom: 0px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 10.5px;
@@ -246,15 +252,19 @@ body {
 .synergy-bar {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px; /* 블럭 사이 간격 살짝 줄이기 */
-  margin-bottom: 20px;
-  padding: 12px 8px; /* 내부 여백 */
+  column-gap: 17px;
+  row-gap: 12px;
+  justify-content: flex-start;
+  margin-bottom: 30px;
+  max-width: 1200px;
+  box-sizing: border-box;
+  width: fit-content;
 }
 
 .synergy-block {
   background: #1e1e1e;
-  padding: 7px; /* 내부 간격 줄임 */
-  border-radius: 6px;
+  padding: 8px; /* 내부 간격 줄임 */
+  border-radius: 8px;
   width: 130px; /* 너무 넓지 않게 */
   color: white;
   font-family: "Pretendard-Regular", sans-serif;
@@ -298,6 +308,7 @@ body {
   justify-content: center;
   color: #aaa;
   margin-top: 2px;
+  margin-bottom: 2px;
 }
 
 .synergy-steps .step.active {
@@ -309,6 +320,7 @@ body {
   color: #666;
 }
 
+<<<<<<< HEAD
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -351,4 +363,66 @@ body {
 
 .modal button:hover {
   background-color: #0f9b75;
+=======
+.champion-hover-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 1;
+  gap: 6px;
+}
+
+.champion-card:hover .champion-hover-overlay {
+  opacity: 1;
+}
+
+.hover-trait-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 4px;
+  width: 80%;
+  max-width: 160px;
+}
+
+.hover-trait-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 2px;
+}
+
+.hover-trait-icon-wrapper {
+  width: 20px;
+  height: 20px;
+  clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+  background: rgba(255, 255, 255, 0.516);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.hover-trait-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.hover-trait-label {
+  font-size: 10px;
+  color: white;
+  font-weight: 500;
+  white-space: nowrap;
+  text-align: left;
+  flex: 1;
+>>>>>>> origin/baenavly
 }
