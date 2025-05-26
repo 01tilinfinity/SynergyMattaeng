@@ -1,6 +1,6 @@
-# SynergeMattaeng (시너지맛탱)
+# SynergyMattaeng (시너지맛탱)
 
-SynergeMattaeng은 lolchess.gg와 같은 TFT 게임 사이트에서 영감을 얻은 웹 플랫폼입니다. 사용자가 자신만의 덱을 구성하고, 이름을 붙여서 게시하면 다른 유저들이 이를 볼 수 있습니다.
+SynergyMattaeng은 lolchess.gg와 같은 TFT 게임 사이트에서 영감을 얻은 웹 플랫폼입니다. 사용자가 자신만의 덱을 구성하고, 이름을 붙여서 게시하면 다른 유저들이 이를 볼 수 있습니다.
 
 ## 팀원
 - 배나연 : 프론트엔드 및 기획
