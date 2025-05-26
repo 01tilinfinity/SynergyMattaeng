@@ -3,7 +3,6 @@ import { getChampions } from "../services/State.js";
 let selectedChampions = [];
 let traitsData = {};
 
-// ✅ [추가] 로그인 영역 렌더링
 function renderAuthArea() {
   const authArea = document.getElementById("auth-area");
   const username = sessionStorage.getItem("username");
@@ -15,51 +14,96 @@ function renderAuthArea() {
       <button id="login-btn">로그인</button>
       <button id="signup-btn">회원가입</button>
     `;
-    document.getElementById("login-btn").addEventListener("click", handleLogin);
-    document.getElementById("signup-btn").addEventListener("click", handleSignup);
+    document.getElementById("login-btn").addEventListener("click", showLoginModal);
+    document.getElementById("signup-btn").addEventListener("click", showSignupModal);
   }
 }
 
-// ✅ [추가] 로그인 로직
-function handleLogin() {
-  const username = prompt("아이디를 입력하세요");
-  const password = prompt("비밀번호를 입력하세요");
+function showLoginModal() {
+  const modal = document.createElement("div");
+  modal.className = "modal-overlay";
+  modal.innerHTML = `
+    <div class="modal">
+      <h3>로그인</h3>
+      <input type="text" id="login-username" placeholder="아이디" />
+      <input type="password" id="login-password" placeholder="비밀번호" />
+      <button id="login-submit">로그인</button>
+      <button id="login-cancel">취소</button>
+    </div>
+  `;
+  document.body.appendChild(modal);
 
-  fetch("http://localhost:8080/api/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username, password }),
-  })
-    .then((res) => {
-      if (!res.ok) throw new Error("로그인 실패");
-      return res.text();
+  document.getElementById("login-submit").addEventListener("click", () => {
+    const username = document.getElementById("login-username").value;
+    const password = document.getElementById("login-password").value;
+
+    fetch("http://localhost:8080/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
     })
-    .then(() => {
-      sessionStorage.setItem("username", username);
-      renderAuthArea();
-      alert("로그인 성공!");
-    })
-    .catch(() => alert("로그인 실패!"));
+      .then((res) => {
+        if (!res.ok) throw new Error("로그인 실패");
+        return res.text();
+      })
+      .then(() => {
+        sessionStorage.setItem("username", username);
+        renderAuthArea();
+        document.body.removeChild(modal);
+        alert("로그인 성공!");
+      })
+      .catch(() => alert("로그인 실패!"));
+  });
+
+  document.getElementById("login-cancel").addEventListener("click", () => {
+    document.body.removeChild(modal);
+  });
 }
 
-// ✅ [추가] 회원가입 로직
-function handleSignup() {
-  const username = prompt("아이디를 입력하세요");
-  const password = prompt("비밀번호를 입력하세요");
+function showSignupModal() {
+  const modal = document.createElement("div");
+  modal.className = "modal-overlay";
+  modal.innerHTML = `
+    <div class="modal">
+      <h3>회원가입</h3>
+      <input type="text" id="signup-username" placeholder="아이디" />
+      <input type="password" id="signup-password" placeholder="비밀번호" />
+      <input type="password" id="signup-password-confirm" placeholder="비밀번호 확인" />
+      <button id="signup-submit">가입하기</button>
+      <button id="signup-cancel">취소</button>
+    </div>
+  `;
+  document.body.appendChild(modal);
 
-  fetch("http://localhost:8080/api/signup", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username, password }),
-  })
-    .then((res) => {
-      if (!res.ok) throw new Error("회원가입 실패");
-      return res.text();
+  document.getElementById("signup-submit").addEventListener("click", () => {
+    const username = document.getElementById("signup-username").value;
+    const password = document.getElementById("signup-password").value;
+    const confirm = document.getElementById("signup-password-confirm").value;
+
+    if (password !== confirm) {
+      alert("비밀번호가 일치하지 않습니다!");
+      return;
+    }
+
+    fetch("http://localhost:8080/api/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
     })
-    .then(() => {
-      alert("회원가입 성공! 로그인해주세요.");
-    })
-    .catch(() => alert("회원가입 실패"));
+      .then((res) => {
+        if (!res.ok) throw new Error("회원가입 실패");
+        return res.text();
+      })
+      .then(() => {
+        alert("회원가입 성공! 로그인 해주세요.");
+        document.body.removeChild(modal);
+      })
+      .catch(() => alert("회원가입 실패"));
+  });
+
+  document.getElementById("signup-cancel").addEventListener("click", () => {
+    document.body.removeChild(modal);
+  });
 }
 
 function createChampionCard(champion) {
