@@ -1,14 +1,19 @@
 package com.synergy.backend.controller;
 
-import com.synergy.backend.domain.User;
-import com.synergy.backend.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCrypt;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.synergy.backend.domain.User;
+import com.synergy.backend.repository.UserRepository;
 
 @RestController
 @CrossOrigin(origins = "*") // 프론트 요청 허용
@@ -20,16 +25,36 @@ public class UserController {
 
   @PostMapping("/signup")
   public Map<String, String> signup(@RequestBody Map<String, String> body) {
-    String username = body.get("username");
-    String password = BCrypt.hashpw(body.get("password"), BCrypt.gensalt());
-
-    User user = new User();
-    user.setUsername(username);
-    user.setPassword(password);
-    userRepository.save(user);
-
-    return Map.of("status", "ok");
+    System.out.println("🔥 [signup] 받은 body: " + body); // 로그 1
+  
+    try {
+      String username = body.get("username");
+      String rawPassword = body.get("password");
+  
+      System.out.println("🔥 [signup] username: " + username); // 로그 2
+      System.out.println("🔥 [signup] password: " + rawPassword); // 로그 3
+  
+      String hashedPassword = BCrypt.hashpw(rawPassword, BCrypt.gensalt());
+  
+      User user = new User();
+      user.setUsername(username);
+      user.setPassword(hashedPassword);
+  
+      System.out.println("🔥 [signup] 저장 전 user 객체: " + user); // 로그 4
+  
+      userRepository.save(user);
+  
+      System.out.println("✅ [signup] 저장 완료");
+  
+      return Map.of("status", "ok");
+  
+    } catch (Exception e) {
+      System.out.println("❌ [signup] 에러 발생:");
+      e.printStackTrace(); // 여기에 핵심 에러 출력됨
+      return Map.of("status", "error", "message", e.getMessage());
+    }
   }
+  
 
   @PostMapping("/login")
   public Map<String, String> login(@RequestBody Map<String, String> body) {
