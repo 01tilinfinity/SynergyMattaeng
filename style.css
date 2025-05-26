@@ -320,7 +320,6 @@ body {
   color: #666;
 }
 
-<<<<<<< HEAD
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -363,66 +362,4 @@ body {
 
 .modal button:hover {
   background-color: #0f9b75;
-=======
-.champion-hover-overlay {
-  position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-  z-index: 1;
-  gap: 6px;
-}
-
-.champion-card:hover .champion-hover-overlay {
-  opacity: 1;
-}
-
-.hover-trait-group {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 4px;
-  width: 80%;
-  max-width: 160px;
-}
-
-.hover-trait-row {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  gap: 2px;
-}
-
-.hover-trait-icon-wrapper {
-  width: 20px;
-  height: 20px;
-  clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
-  background: rgba(255, 255, 255, 0.516);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-}
-
-.hover-trait-icon {
-  width: 14px;
-  height: 14px;
-}
-
-.hover-trait-label {
-  font-size: 10px;
-  color: white;
-  font-weight: 500;
-  white-space: nowrap;
-  text-align: left;
-  flex: 1;
->>>>>>> origin/baenavly
 }
