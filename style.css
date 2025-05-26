@@ -41,7 +41,7 @@ body {
   box-sizing: border-box;
   position: relative;
   cursor: pointer;
-  flex: 0 0 calc(19.2% - 13px); /* ✅ 5개 기준 (100% / 5 - gap 보정) */
+  flex: 0 0 calc(19.6% - 13px); /* ✅ 5개 기준 (100% / 5 - gap 보정) */
 }
 
 .selected-card {
