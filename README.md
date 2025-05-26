@@ -22,8 +22,22 @@ SynergyMattaeng은 lolchess.gg와 같은 TFT 게임 사이트에서 영감을 �
 ![image](https://github.com/user-attachments/assets/19960529-e364-41e2-9672-536dd58d79e9)
 ![image](https://github.com/user-attachments/assets/fec82ba4-595f-43af-a271-75770d95cd67)
 
-## 구현 진행상황
-- 덱 구성 페이지 프론트엔드 구현 거의 완료
-- MySQL - Node.js DB 연동 완료
-- 프론트엔드 보완 및 백엔드 회원가입/로그인 구현 진행 중
-![image](https://github.com/user-attachments/assets/872fff25-bfa1-46bf-9d23-af994588ff26)
+## 구현 진행상황(5/26)
+- 덱 구성 페이지 프론트엔드 구현 완료
+  - 마우스 오버(호버) 시 챔피언 특성 오버레이
+  - 선택된 챔피언 고화질 이미지로 교체 및 코스트 오름차순 -> 이름 오름차순 정렬
+  - 반응형 디자인 적용
+  - 시너지바, 챔피언 목록 정렬 및 디자인 보완
+    ![image](https://github.com/user-attachments/assets/9211cbc1-74e0-412e-a43c-b091c910c55e)
+    ![image](https://github.com/user-attachments/assets/d8b3f60f-970a-4332-8de8-575806a3da15)
+
+- 백엔드 프레임워크 Node.js -> springboot로 변경
+- 백엔드 회원가입/로그인 기능 구현 완료, DB 연동 완료
+  ![image (20)](https://github.com/user-attachments/assets/9558c7cd-6217-4453-b31c-a63ed152cee3)
+  ![image (21)](https://github.com/user-attachments/assets/3dc843b6-be0b-4bb0-b3be-5a98fd160907)
+
+## 진행 계획
+- 회원가입/로그인 프론트 작업
+- 백엔드 글 관련 DB - 백엔드 연동
+- 글 작성 API 개발
+
