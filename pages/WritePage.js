@@ -1,16 +1,76 @@
 import { getChampions } from "../services/State.js";
 
 let selectedChampions = [];
+let traitsData = {};
+
+// ✅ [추가] 로그인 영역 렌더링
+function renderAuthArea() {
+  const authArea = document.getElementById("auth-area");
+  const username = sessionStorage.getItem("username");
+
+  if (username) {
+    authArea.innerHTML = `<span style="font-weight: bold;">${username} 님 안뇽하세용 👋</span>`;
+  } else {
+    authArea.innerHTML = `
+      <button id="login-btn">로그인</button>
+      <button id="signup-btn">회원가입</button>
+    `;
+    document.getElementById("login-btn").addEventListener("click", handleLogin);
+    document.getElementById("signup-btn").addEventListener("click", handleSignup);
+  }
+}
+
+// ✅ [추가] 로그인 로직
+function handleLogin() {
+  const username = prompt("아이디를 입력하세요");
+  const password = prompt("비밀번호를 입력하세요");
+
+  fetch("http://localhost:8080/api/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username, password }),
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error("로그인 실패");
+      return res.text();
+    })
+    .then(() => {
+      sessionStorage.setItem("username", username);
+      renderAuthArea();
+      alert("로그인 성공!");
+    })
+    .catch(() => alert("로그인 실패!"));
+}
+
+// ✅ [추가] 회원가입 로직
+function handleSignup() {
+  const username = prompt("아이디를 입력하세요");
+  const password = prompt("비밀번호를 입력하세요");
+
+  fetch("http://localhost:8080/api/signup", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username, password }),
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error("회원가입 실패");
+      return res.text();
+    })
+    .then(() => {
+      alert("회원가입 성공! 로그인해주세요.");
+    })
+    .catch(() => alert("회원가입 실패"));
+}
 
 function createChampionCard(champion) {
   const card = document.createElement("div");
-  card.className = `champion-card cost-${champion.cost}`; // ✅ 코스트별 클래스
+  card.className = `champion-card cost-${champion.cost}`;
 
   card.innerHTML = `
     <div class="champion-image-wrapper">
       <img class="champion-image" src="${champion.image}" alt="${champion.name}" />
-      <div class="champion-cost-tag">$${champion.cost}</div>  <!-- 우측 상단 -->
-      <div class="champion-name">${champion.name}</div>       <!-- 하단 이름 -->
+      <div class="champion-cost-tag">$${champion.cost}</div>
+      <div class="champion-name">${champion.name}</div>
     </div>
   `;
 
@@ -25,7 +85,7 @@ function createChampionCard(champion) {
     }
 
     selectedChampions.push(champion);
-    ensureTraitsAndRenderAll(); // ✅ 이걸로 교체!
+    ensureTraitsAndRenderAll();
   });
 
   return card;
@@ -33,7 +93,7 @@ function createChampionCard(champion) {
 
 function renderSelectedChampions() {
   const container = document.getElementById("selected-champions");
-  container.innerHTML = ""; // 초기화
+  container.innerHTML = "";
 
   selectedChampions.forEach((champion, index) => {
     const slot = document.createElement("div");
@@ -42,17 +102,13 @@ function renderSelectedChampions() {
     slot.innerHTML = `
       <div class="selected-card cost-${champion.cost}">
         <div class="selected-image-wrapper">
-          <img src="${champion.image}" class="selected-image" alt="${
-      champion.name
-    }" />
+          <img src="${champion.image}" class="selected-image" alt="${champion.name}" />
           <div class="selected-traits">
             ${champion.traits
               .map(
                 (trait) => `
               <div class="trait-icon-wrapper">
-                <img src="assets/traits/${
-                  traitsData[trait]?.icon || "default.svg"
-                }" class="trait-icon" alt="${trait}" />
+                <img src="assets/traits/${traitsData[trait]?.icon || "default.svg"}" class="trait-icon" alt="${trait}" />
               </div>
             `
               )
@@ -63,10 +119,9 @@ function renderSelectedChampions() {
       </div>
     `;
 
-    // 🔁 클릭 시 제거
     slot.addEventListener("click", () => {
       selectedChampions.splice(index, 1);
-      ensureTraitsAndRenderAll(); // 여기서도 교체!
+      ensureTraitsAndRenderAll();
     });
 
     container.appendChild(slot);
@@ -75,7 +130,9 @@ function renderSelectedChampions() {
 
 export async function renderWritePage() {
   const app = document.getElementById("app");
+
   app.innerHTML = `
+    <div id="auth-area" style="display: flex; justify-content: flex-end; margin-bottom: 10px;"></div> <!-- ✅ 로그인 영역 -->
     <h1>챔피언 선택</h1>
     <input id="deck-name" type="text" placeholder="덱 이름을 입력하세요" />
     <h3>선택한 챔피언 (최대 10명)</h3>
@@ -85,21 +142,15 @@ export async function renderWritePage() {
     <div id="champion-list" class="champion-list"></div>
   `;
 
-  console.log("[DEBUG] renderWritePage 시작");
+  renderAuthArea(); // ✅ 로그인 UI 표시
 
   const champions = await getChampions();
-  console.log("[DEBUG] 불러온 챔피언 수:", champions.length);
-  console.log(champions); // 챔피언 데이터 확인
-
   const list = document.getElementById("champion-list");
-
   champions.forEach((champ) => {
     const card = createChampionCard(champ);
     list.appendChild(card);
   });
 }
-
-let traitsData = {};
 
 function loadTraitsAndRenderSynergy() {
   fetch("data/traits.json")
@@ -115,8 +166,6 @@ function renderSynergyBar() {
   synergyBar.innerHTML = "";
 
   const traitCount = {};
-
-  // 1. 특성별 개수 집계
   selectedChampions.forEach((champ) => {
     champ.traits.forEach((trait) => {
       if (!traitCount[trait]) traitCount[trait] = 0;
@@ -137,7 +186,6 @@ function renderSynergyBar() {
     .map(([trait, count]) => {
       const traitInfo = traitsData[trait];
       if (!traitInfo) return null;
-
       const thresholds = traitInfo.thresholds;
       const colors = traitInfo.colors;
       const tierIndex = thresholds.findLastIndex((t) => count >= t);
@@ -155,14 +203,12 @@ function renderSynergyBar() {
     })
     .filter(Boolean);
 
-  // ✅ 정렬 수행
   traitArray.sort((a, b) => {
     if (a.tierOrder !== b.tierOrder) return a.tierOrder - b.tierOrder;
     if (a.count !== b.count) return b.count - a.count;
     return a.name.localeCompare(b.name, "ko");
   });
 
-  // 2. traits 순회
   traitArray.forEach((traitData) => {
     const {
       name: trait,
@@ -179,70 +225,39 @@ function renderSynergyBar() {
     const block = document.createElement("div");
     block.className = `synergy-block ${tierColor}`;
 
-    // 🔸 Case 1: 시너지 조건 아직 안 됨
+    const header = document.createElement("div");
+    header.className = "synergy-header";
+
+    const iconWrapper = document.createElement("div");
+    iconWrapper.className = "synergy-icon-wrapper";
+    iconWrapper.style.position = "relative";
+    iconWrapper.style.width = "28px";
+    iconWrapper.style.height = "28px";
+
+    const bgImg = document.createElement("img");
+    bgImg.src = tierIndex === -1 ? `assets/trait-backgrounds/darken.svg` : bgSrc;
+    bgImg.style.width = "100%";
+    bgImg.style.position = "absolute";
+
+    const fgImg = document.createElement("img");
+    fgImg.src = iconSrc;
+    fgImg.style.width = "75%";
+    fgImg.style.height = "75%";
+    fgImg.style.position = "absolute";
+    fgImg.style.top = "12.5%";
+    fgImg.style.left = "12.5%";
+
+    iconWrapper.appendChild(bgImg);
+    iconWrapper.appendChild(fgImg);
+
     if (tierIndex === -1) {
-      // 🟪 darken 상태일 때 블럭 구성
-      const iconWrapper = document.createElement("div");
-      iconWrapper.className = "synergy-icon-wrapper";
-      iconWrapper.style.position = "relative";
-      iconWrapper.style.width = "28px";
-      iconWrapper.style.height = "28px";
-
-      const bgImg = document.createElement("img");
-      bgImg.src = `assets/trait-backgrounds/darken.svg`;
-      bgImg.style.width = "100%";
-      bgImg.style.position = "absolute";
-
-      const fgImg = document.createElement("img");
-      fgImg.src = iconSrc;
-      fgImg.style.width = "75%";
-      fgImg.style.height = "75%";
-      fgImg.style.position = "absolute";
-      fgImg.style.top = "12.5%";
-      fgImg.style.left = "12.5%";
-
-      iconWrapper.appendChild(bgImg);
-      iconWrapper.appendChild(fgImg);
-
-      const header = document.createElement("div");
-      header.className = "synergy-header";
-
       const nameSpan = document.createElement("span");
       nameSpan.className = "synergy-name";
       nameSpan.textContent = `${trait} ${count} / ${thresholds[0]}`;
-
       header.appendChild(iconWrapper);
       header.appendChild(nameSpan);
-
       block.appendChild(header);
-      synergyBar.appendChild(block);
     } else {
-      // ✅ 조건 만족 시: 기존 UI 렌더
-      const header = document.createElement("div");
-      header.className = "synergy-header";
-
-      const iconWrapper = document.createElement("div");
-      iconWrapper.className = "synergy-icon-wrapper";
-      iconWrapper.style.position = "relative";
-      iconWrapper.style.width = "28px";
-      iconWrapper.style.height = "28px";
-
-      const bgImg = document.createElement("img");
-      bgImg.src = bgSrc;
-      bgImg.style.width = "100%";
-      bgImg.style.position = "absolute";
-
-      const fgImg = document.createElement("img");
-      fgImg.src = iconSrc;
-      fgImg.style.width = "75%";
-      fgImg.style.height = "75%";
-      fgImg.style.position = "absolute";
-      fgImg.style.top = "12.5%";
-      fgImg.style.left = "12.5%";
-
-      iconWrapper.appendChild(bgImg);
-      iconWrapper.appendChild(fgImg);
-
       const countSpan = document.createElement("span");
       countSpan.className = "synergy-count";
       countSpan.textContent = count;
@@ -263,7 +278,6 @@ function renderSynergyBar() {
         s.className = "step";
         s.textContent = step;
         if (i === tierIndex) s.classList.add("active");
-
         steps.appendChild(s);
 
         if (i < thresholds.length - 1) {
@@ -276,13 +290,13 @@ function renderSynergyBar() {
 
       block.appendChild(header);
       block.appendChild(steps);
-      synergyBar.appendChild(block);
     }
+
+    synergyBar.appendChild(block);
   });
 }
 
 async function ensureTraitsAndRenderAll() {
-  // traitsData가 비어 있으면 fetch
   if (!traitsData || Object.keys(traitsData).length === 0) {
     const res = await fetch("data/traits.json");
     traitsData = await res.json();
