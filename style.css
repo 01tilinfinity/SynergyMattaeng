@@ -30,7 +30,7 @@ body {
 .selected-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr); /* 5개씩 */
-  gap: 10px;
+  gap: 20px;
   justify-content: center;
   margin-bottom: 20px;
 }
@@ -88,7 +88,8 @@ body {
   height: 40px;
   box-sizing: border-box;
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 600;
+  letter-spacing: 1px;
   color: white;
   display: flex;
   justify-content: center;
@@ -117,17 +118,17 @@ body {
 /* 특성 아이콘 */
 .selected-traits {
   position: absolute;
-  top: 5px;
-  left: 5px;
+  top: 6px;
+  left: 6px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
 }
 
 .trait-icon-wrapper {
-  background: #e0e0e0e5;
-  width: 40px;
-  height: 40px;
+  background: #ffffffad;
+  width: 35px;
+  height: 35px;
   clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
   display: flex;
   justify-content: center;
@@ -135,9 +136,9 @@ body {
 }
 
 .trait-icon {
-  width: 30px;
-  height: 30px;
-  opacity: 90%;
+  width: 27px;
+  height: 27px;
+  opacity: 80%;
 }
 
 /* 챔피언 목록 */

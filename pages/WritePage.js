@@ -35,26 +35,30 @@ function renderSelectedChampions() {
   const container = document.getElementById("selected-champions");
   container.innerHTML = ""; // 초기화
 
-  selectedChampions.forEach((champion, index) => {
+  // 정렬: cost 내림차순 → 이름 오름차순
+  const sorted = [...selectedChampions].sort((a, b) => {
+    if (a.cost !== b.cost) return b.cost - a.cost;
+    return a.name.localeCompare(b.name, "ko");
+  });
+
+  sorted.forEach((champion, index) => {
     const slot = document.createElement("div");
     slot.className = "selected-slot";
 
     slot.innerHTML = `
       <div class="selected-card cost-${champion.cost}">
         <div class="selected-image-wrapper">
-          <img src="${champion.image}" class="selected-image" alt="${
-      champion.name
-    }" />
+          <img src="${champion.hqImage}" class="selected-image" alt="${champion.name}" />
           <div class="selected-traits">
             ${champion.traits
               .map(
                 (trait) => `
-              <div class="trait-icon-wrapper">
-                <img src="assets/traits/${
-                  traitsData[trait]?.icon || "default.svg"
-                }" class="trait-icon" alt="${trait}" />
-              </div>
-            `
+                <div class="trait-icon-wrapper">
+                  <img src="assets/traits/${
+                    traitsData[trait]?.icon || "default.svg"
+                  }" class="trait-icon" alt="${trait}" />
+                </div>
+              `
               )
               .join("")}
           </div>
@@ -63,10 +67,9 @@ function renderSelectedChampions() {
       </div>
     `;
 
-    // 🔁 클릭 시 제거
     slot.addEventListener("click", () => {
       selectedChampions.splice(index, 1);
-      ensureTraitsAndRenderAll(); // 여기서도 교체!
+      ensureTraitsAndRenderAll();
     });
 
     container.appendChild(slot);
