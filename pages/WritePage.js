@@ -4,7 +4,7 @@ let selectedChampions = [];
 
 function createChampionCard(champion) {
   const card = document.createElement("div");
-  card.className = "champion-card";
+  card.className = `champion-card cost-${champion.cost}`;
 
   card.innerHTML = `
     <div class="champion-image-wrapper">
@@ -68,9 +68,9 @@ function renderSelectedChampions() {
   const container = document.getElementById("selected-champions");
   container.innerHTML = ""; // 초기화
 
-  // 정렬: cost 내림차순 → 이름 오름차순
+  // 정렬: cost 오름차순 → 이름 오름차순
   const sorted = [...selectedChampions].sort((a, b) => {
-    if (a.cost !== b.cost) return b.cost - a.cost;
+    if (a.cost !== b.cost) return a.cost - b.cost;
     return a.name.localeCompare(b.name, "ko");
   });
 
