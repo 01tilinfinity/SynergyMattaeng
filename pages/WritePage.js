@@ -396,11 +396,13 @@ function renderSubmitButton() {
     if (!deckName) return alert("덱 이름을 입력하세요!");
     if (selectedChampions.length === 0) return alert("챔피언을 선택하세요!");
 
+    // 등록 시 → champions를 문자열이 아니라 배열로 그대로 보내야 함
     const deck = {
       name: deckName,
       username,
-      champions: JSON.stringify(selectedChampions.map(c => c.id))  // ✅ 배열 → 문자열
-    };    
+      champions: selectedChampions.map(c => c.id)  // ✅ JSON.stringify 제거
+    };
+    
 
     fetch("http://localhost:8080/api/decks", {
       method: "POST",

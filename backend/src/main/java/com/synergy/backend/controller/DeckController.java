@@ -29,6 +29,7 @@ public class DeckController {
         this.objectMapper = new ObjectMapper();
     }
 
+    // ✅ 덱 등록
     @PostMapping
     public Deck createDeck(@RequestBody Map<String, Object> payload) {
         try {
@@ -40,7 +41,10 @@ public class DeckController {
             deck.setName(name);
             deck.setUsername(username);
             deck.setCreatedAt(LocalDate.now());
-            deck.setChampions(objectMapper.writeValueAsString(champions)); // 리스트 → JSON 문자열
+
+            // List → JSON String
+            String championsJson = objectMapper.writeValueAsString(champions);
+            deck.setChampions(championsJson);
 
             return deckRepository.save(deck);
         } catch (Exception e) {
@@ -48,11 +52,13 @@ public class DeckController {
         }
     }
 
+    // ✅ 덱 목록 조회 (최신순)
     @GetMapping
     public List<Deck> getDecks() {
         return deckRepository.findAllByOrderByCreatedAtDesc();
     }
 
+    // ✅ 덱 상세 조회
     @GetMapping("/{id}")
     public Deck getDeckById(@PathVariable Long id) {
         return deckRepository.findById(id).orElse(null);
