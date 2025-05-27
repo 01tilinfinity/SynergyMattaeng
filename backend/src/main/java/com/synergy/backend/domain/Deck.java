@@ -1,3 +1,4 @@
+// 🔧 Deck.java (Entity 클래스 전체)
 package com.synergy.backend.domain;
 
 import java.time.LocalDate;
@@ -20,9 +21,11 @@ public class Deck {
     private LocalDate createdAt;
 
     @Lob
-    private String champions; // JSON string of champion IDs
+    private String champions;
 
-    // Getters and setters
+    private int likes; // ✅ 추천 수
+
+    // Getters / Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -37,4 +40,7 @@ public class Deck {
 
     public String getChampions() { return champions; }
     public void setChampions(String champions) { this.champions = champions; }
+
+    public int getLikes() { return likes; }
+    public void setLikes(int likes) { this.likes = likes; }
 }
