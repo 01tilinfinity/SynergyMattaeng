@@ -215,4 +215,22 @@ function renderAuthArea() {
     document.getElementById("login-btn").addEventListener("click", () => alert("로그인 기능은 index.html에서 이용해주세요."));
     document.getElementById("signup-btn").addEventListener("click", () => alert("회원가입 기능은 index.html에서 이용해주세요."));
   }
+  const backButton = document.createElement("a");
+  backButton.href = "list.html";
+  backButton.textContent = "← 목록으로 돌아가기";
+  backButton.style.display = "inline-block";
+  backButton.style.marginTop = "20px";
+  backButton.style.fontWeight = "bold";
+  backButton.style.color = "#207ac7";
+  backButton.style.textDecoration = "none";
+
+  backButton.addEventListener("mouseover", () => {
+  backButton.style.textDecoration = "underline";
+  });
+  backButton.addEventListener("mouseout", () => {
+  backButton.style.textDecoration = "none";
+  });
+
+  app.appendChild(backButton);
+
 }
