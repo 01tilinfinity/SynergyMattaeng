@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>덱 상세 보기</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app" style="max-width: 1000px; margin: auto; padding: 20px;"></div>
+
+  <script type="module">
+    import { renderDeckDetailPage } from './pages/DetailPage.js';
+    document.addEventListener("DOMContentLoaded", () => {
+      renderDeckDetailPage();
+    });
+  </script>
+</body>
+</html>

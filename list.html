@@ -1,16 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>덱 목록</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div id="app">
-    <h1>등록된 덱 목록</h1>
-    <div id="deck-list"></div>
-    <a href="index.html">🏠 돌아가기</a>
+    <h1 style="margin-bottom: 20px;">등록된 덱 목록</h1>
+    
+    <!-- 덱 목록을 렌더링할 영역 -->
+    <div id="deck-list" class="deck-list"></div>
+
+    <div style="margin-top: 30px;">
+      <a href="index.html" style="font-weight: bold; color: #207ac7; text-decoration: none;">🏠 돌아가기</a>
+    </div>
   </div>
+
+  <!-- JS 연결 -->
   <script type="module" src="pages/ListPage.js"></script>
 </body>
 </html>

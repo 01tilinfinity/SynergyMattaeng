@@ -399,8 +399,8 @@ function renderSubmitButton() {
     const deck = {
       name: deckName,
       username,
-      champions: selectedChampions.map(c => c.id)
-    };
+      champions: JSON.stringify(selectedChampions.map(c => c.id))  // ✅ 배열 → 문자열
+    };    
 
     fetch("http://localhost:8080/api/decks", {
       method: "POST",
