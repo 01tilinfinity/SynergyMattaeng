@@ -1,8 +1,12 @@
 package com.synergy.backend.domain;
 
-import jakarta.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 
 @Entity
 public class Deck {
@@ -15,10 +19,10 @@ public class Deck {
     private String username;
     private LocalDate createdAt;
 
-    @ElementCollection
-    private List<String> champions;  // 챔피언 id 리스트
+    @Lob
+    private String champions; // JSON string of champion IDs
 
-    // Getter/Setter
+    // Getters and setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -31,6 +35,6 @@ public class Deck {
     public LocalDate getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDate createdAt) { this.createdAt = createdAt; }
 
-    public List<String> getChampions() { return champions; }
-    public void setChampions(List<String> champions) { this.champions = champions; }
+    public String getChampions() { return champions; }
+    public void setChampions(String champions) { this.champions = champions; }
 }
