@@ -41,7 +41,7 @@ body {
   box-sizing: border-box;
   position: relative;
   cursor: pointer;
-  flex: 0 0 calc(19.2% - 13px); /* ✅ 5개 기준 (100% / 5 - gap 보정) */
+  flex: 0 0 calc(19.6% - 13px); /* ✅ 5개 기준 (100% / 5 - gap 보정) */
 }
 
 .selected-card {
@@ -127,13 +127,13 @@ body {
   left: 7px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
 }
 
 .trait-icon-wrapper {
   background: #ffffffad;
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
   display: flex;
   justify-content: center;
@@ -141,8 +141,8 @@ body {
 }
 
 .trait-icon {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   opacity: 80%;
 }
 
@@ -185,8 +185,8 @@ body {
   position: absolute;
   top: 0;
   right: 0;
-  padding: 1px 4px;
-  font-size: 11px;
+  padding: 1px 3px 3px 5px;
+  font-size: 12px;
   font-weight: bold;
   border-top-right-radius: 0;
   border-bottom-left-radius: 6px;
@@ -234,10 +234,10 @@ body {
 /* ✅ 챔피언 이름 (하단 흰 글씨 + 검정 테두리) */
 .champion-name {
   position: absolute;
-  bottom: 0px;
+  bottom: -5px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 10.5px;
+  font-size: 11px;
   font-weight: 600;
   color: white;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
@@ -320,6 +320,69 @@ body {
   color: #666;
 }
 
+.champion-hover-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 1;
+  gap: 6px;
+}
+
+.champion-card:hover .champion-hover-overlay {
+  opacity: 1;
+}
+
+.hover-trait-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 4px;
+  width: 80%;
+  max-width: 160px;
+}
+
+.hover-trait-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 2px;
+}
+
+.hover-trait-icon-wrapper {
+  width: 20px;
+  height: 20px;
+  clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+  background: rgba(255, 255, 255, 0.516);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.hover-trait-icon {
+  width: 14px;
+  height: 14px;
+}
+
+.hover-trait-label {
+  font-size: 10px;
+  color: white;
+  font-weight: 500;
+  white-space: nowrap;
+  text-align: left;
+  flex: 1;
+}
+
+/* ✅ 모달 관련 스타일 추가 */
 .modal-overlay {
   position: fixed;
   top: 0;
