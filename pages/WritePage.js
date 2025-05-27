@@ -2,6 +2,9 @@ import { getChampions } from "../services/State.js";
 
 let selectedChampions = [];
 let traitsData = {};
+let allChampions = [];
+let currentSort = "cost";
+let currentSortButton = null;
 
 function renderAuthArea() {
   const authArea = document.getElementById("auth-area");
@@ -22,8 +25,12 @@ function renderAuthArea() {
       <button id="login-btn">로그인</button>
       <button id="signup-btn">회원가입</button>
     `;
-    document.getElementById("login-btn").addEventListener("click", showLoginModal);
-    document.getElementById("signup-btn").addEventListener("click", showSignupModal);
+    document
+      .getElementById("login-btn")
+      .addEventListener("click", showLoginModal);
+    document
+      .getElementById("signup-btn")
+      .addEventListener("click", showSignupModal);
   }
 }
 
@@ -64,7 +71,7 @@ function showLoginModal() {
           throw new Error("로그인 실패"); // 서버에서 status: error 받은 경우
         }
       })
-      .catch(() => alert("로그인 실패!"));    
+      .catch(() => alert("로그인 실패!"));
   });
 
   document.getElementById("login-cancel").addEventListener("click", () => {
@@ -198,6 +205,132 @@ function createChampionCard(champion) {
   return card;
 }
 
+function renderChampionList() {
+  const list = document.getElementById("champion-list");
+  list.className = "champion-list price-mode"; // 💡 가격/이름순용
+  list.innerHTML = "";
+
+  let sorted = [...allChampions];
+  if (currentSort === "cost") {
+    sorted.sort(
+      (a, b) => a.cost - b.cost || a.name.localeCompare(b.name, "ko")
+    );
+  } else if (currentSort === "name") {
+    sorted.sort((a, b) => a.name.localeCompare(b.name, "ko"));
+  }
+
+  sorted.forEach((champ) => {
+    const card = createChampionCard(champ);
+    list.appendChild(card);
+  });
+}
+
+// 특성별 정렬 챔피언 목록 렌더링 함수 (아이콘 클래스 분리)
+function renderTraitSortedChampions() {
+  const list = document.getElementById("champion-list");
+  list.className = "champion-list trait-mode"; // 💡 특성별용
+  list.innerHTML = "";
+
+  const traitMap = {};
+  allChampions.forEach((champion) => {
+    champion.traits.forEach((trait) => {
+      if (!traitMap[trait]) traitMap[trait] = [];
+      traitMap[trait].push(champion);
+    });
+  });
+
+  const traitNames = Object.keys(traitMap).sort((a, b) =>
+    a.localeCompare(b, "ko")
+  );
+
+  traitNames.forEach((trait) => {
+    const group = document.createElement("div");
+    group.className = "trait-group";
+
+    const traitInfo = traitsData[trait];
+    const header = document.createElement("div");
+    header.className = "trait-header";
+
+    const icon = document.createElement("img");
+    icon.className = "trait-section-icon";
+    icon.src = `assets/traits/${traitInfo.icon}`;
+    icon.alt = trait;
+
+    const title = document.createElement("div");
+    title.className = "trait-title";
+    title.textContent = `${trait} (${traitInfo.thresholds.join(" / ")})`;
+
+    header.appendChild(icon);
+    header.appendChild(title);
+    group.appendChild(header);
+
+    const champList = document.createElement("div");
+    champList.className = "trait-champion-list";
+    champList.style.marginBottom = "16px";
+
+    traitMap[trait]
+      .sort((a, b) => a.cost - b.cost || a.name.localeCompare(b.name, "ko"))
+      .forEach((champion) => {
+        const card = createChampionCard(champion);
+        champList.appendChild(card);
+      });
+
+    group.appendChild(champList);
+    list.appendChild(group);
+  });
+}
+
+function renderSortButtons() {
+  const list = document.getElementById("champion-list");
+  const buttonWrap = document.createElement("div");
+  buttonWrap.style.display = "flex";
+  buttonWrap.style.gap = "6px";
+  buttonWrap.style.marginBottom = "12px";
+
+  const costBtn = document.createElement("button");
+  costBtn.textContent = "가격순";
+  costBtn.className = "sort-button";
+  costBtn.onclick = () => {
+    currentSort = "cost";
+    updateSortButtonStyle(costBtn);
+    renderChampionList();
+  };
+
+  const nameBtn = document.createElement("button");
+  nameBtn.textContent = "이름순";
+  nameBtn.className = "sort-button";
+  nameBtn.onclick = () => {
+    currentSort = "name";
+    updateSortButtonStyle(nameBtn);
+    renderChampionList();
+  };
+
+  const traitBtn = document.createElement("button");
+  traitBtn.textContent = "특성별";
+  traitBtn.className = "sort-button";
+  traitBtn.onclick = () => {
+    currentSort = "trait";
+    updateSortButtonStyle(traitBtn);
+    renderTraitSortedChampions(); // 이 함수가 방금 추가된 핵심!
+  };
+
+  buttonWrap.appendChild(costBtn);
+  buttonWrap.appendChild(nameBtn);
+  buttonWrap.appendChild(traitBtn);
+  list.before(buttonWrap);
+
+  // 기본 선택 강조 초기화
+  updateSortButtonStyle(costBtn);
+}
+
+function updateSortButtonStyle(activeButton) {
+  if (currentSortButton) {
+    currentSortButton.classList.remove("active-sort-button");
+  }
+  activeButton.classList.add("active-sort-button");
+  currentSortButton = activeButton;
+}
+
 function renderSelectedChampions() {
   const container = document.getElementById("selected-champions");
   container.innerHTML = "";
@@ -215,12 +348,20 @@ function renderSelectedChampions() {
     slot.innerHTML = `
       <div class="selected-card cost-${champion.cost}">
         <div class="selected-image-wrapper">
-          <img src="${champion.hqImage || champion.image}" class="selected-image" alt="${champion.name}" />
+          <img src="${
+            champion.hqImage || champion.image
+          }" class="selected-image" alt="${champion.name}" />
           <div class="selected-traits">
-            ${champion.traits.map(trait => `
+            ${champion.traits
+              .map(
+                (trait) => `
               <div class="trait-icon-wrapper">
-                <img src="assets/traits/${traitsData[trait]?.icon || "default.svg"}" class="trait-icon" alt="${trait}" />
-              </div>`).join("")}
+                <img src="assets/traits/${
+                  traitsData[trait]?.icon || "default.svg"
+                }" class="trait-icon" alt="${trait}" />
+              </div>`
+              )
+              .join("")}
           </div>
         </div>
         <div class="selected-name-tag">${champion.name}</div>
@@ -252,12 +393,9 @@ export async function renderWritePage() {
   renderAuthArea();
   const traitsRes = await fetch("data/traits.json");
   traitsData = await traitsRes.json();
-  const champions = await getChampions();
-  const list = document.getElementById("champion-list");
-  champions.forEach((champ) => {
-    const card = createChampionCard(champ);
-    list.appendChild(card);
-  });
+  allChampions = await getChampions(); // 🔹 챔피언 전체 저장
+  renderSortButtons(); // 🔹 버튼 먼저
+  renderChampionList(); // 🔹 정렬된 챔피언 렌더링
   renderSynergyBar();
   renderSubmitButton(); // 덱 등록 버튼 추가
 }
@@ -309,55 +447,58 @@ function renderSynergyBar() {
       return a.name.localeCompare(b.name, "ko");
     });
 
-  traitArray.forEach(({ name, count, thresholds, tier, activeTierIndex, icon }) => {
-    const iconSrc = `assets/traits/${icon}`;
-    const bgSrc = `assets/trait-backgrounds/${tier}.svg`;
+  traitArray.forEach(
+    ({ name, count, thresholds, tier, activeTierIndex, icon }) => {
+      const iconSrc = `assets/traits/${icon}`;
+      const bgSrc = `assets/trait-backgrounds/${tier}.svg`;
 
-    const block = document.createElement("div");
-    block.className = `synergy-block ${tier}`;
+      const block = document.createElement("div");
+      block.className = `synergy-block ${tier}`;
 
-    const iconWrapper = document.createElement("div");
-    iconWrapper.className = "synergy-icon-wrapper";
-    iconWrapper.style = "position: relative; width: 28px; height: 28px;";
+      const iconWrapper = document.createElement("div");
+      iconWrapper.className = "synergy-icon-wrapper";
+      iconWrapper.style = "position: relative; width: 28px; height: 28px;";
 
-    const bg = document.createElement("img");
-    bg.src = activeTierIndex === -1 ? `assets/trait-backgrounds/darken.svg` : bgSrc;
-    bg.style = "width: 100%; position: absolute;";
+      const bg = document.createElement("img");
+      bg.src =
+        activeTierIndex === -1 ? `assets/trait-backgrounds/darken.svg` : bgSrc;
+      bg.style = "width: 100%; position: absolute;";
 
-    const fg = document.createElement("img");
-    fg.src = iconSrc;
-    fg.style = "width: 75%; height: 75%; position: absolute; top: 12.5%; left: 12.5%;";
+      const fg = document.createElement("img");
+      fg.src = iconSrc;
+      fg.style =
+        "width: 75%; height: 75%; position: absolute; top: 12.5%; left: 12.5%;";
 
-    iconWrapper.append(bg, fg);
+      iconWrapper.append(bg, fg);
 
-    const header = document.createElement("div");
-    header.className = "synergy-header";
-    header.append(iconWrapper);
+      const header = document.createElement("div");
+      header.className = "synergy-header";
+      header.append(iconWrapper);
 
-    if (activeTierIndex === -1) {
-      const nameSpan = document.createElement("span");
-      nameSpan.className = "synergy-name";
-      nameSpan.textContent = `${name} ${count} / ${thresholds[0]}`;
-      header.append(nameSpan);
-      block.append(header);
-    } else {
-      const countSpan = document.createElement("span");
-      countSpan.className = "synergy-count";
-      countSpan.textContent = count;
+      if (activeTierIndex === -1) {
+        const nameSpan = document.createElement("span");
+        nameSpan.className = "synergy-name";
+        nameSpan.textContent = `${name} ${count} / ${thresholds[0]}`;
+        header.append(nameSpan);
+        block.append(header);
+      } else {
+        const countSpan = document.createElement("span");
+        countSpan.className = "synergy-count";
+        countSpan.textContent = count;
 
-      const nameSpan = document.createElement("span");
-      nameSpan.className = "synergy-name";
-      nameSpan.textContent = name;
+        const nameSpan = document.createElement("span");
+        nameSpan.className = "synergy-name";
+        nameSpan.textContent = name;
 
         const steps = document.createElement("div");
         steps.className = "synergy-steps";
 
-      thresholds.forEach((step, i) => {
-        const s = document.createElement("span");
-        s.className = "step";
-        s.textContent = step;
-        if (i === activeTierIndex) s.classList.add("active");
-        steps.appendChild(s);
+        thresholds.forEach((step, i) => {
+          const s = document.createElement("span");
+          s.className = "step";
+          s.textContent = step;
+          if (i === activeTierIndex) s.classList.add("active");
+          steps.appendChild(s);
 
           if (i < thresholds.length - 1) {
             const arrow = document.createElement("span");
@@ -367,12 +508,13 @@ function renderSynergyBar() {
           }
         });
 
-      header.append(countSpan, nameSpan);
-      block.append(header, steps);
-    }
+        header.append(countSpan, nameSpan);
+        block.append(header, steps);
+      }
 
-    synergyBar.append(block);
-  });
+      synergyBar.append(block);
+    }
+  );
 }
 
 async function ensureTraitsAndRenderAll() {
@@ -400,16 +542,15 @@ function renderSubmitButton() {
     const deck = {
       name: deckName,
       username,
-      champions: selectedChampions.map(c => c.id)  // ✅ JSON.stringify 제거
+      champions: selectedChampions.map((c) => c.id), // ✅ JSON.stringify 제거
     };
-    
 
     fetch("http://localhost:8080/api/decks", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(deck),
     })
-      .then(res => {
+      .then((res) => {
         if (!res.ok) throw new Error("등록 실패");
         alert("덱이 등록되었습니다!");
         location.href = "list.html";
