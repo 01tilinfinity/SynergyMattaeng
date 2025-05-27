@@ -14,7 +14,7 @@ SynergeMattaeng은 lolchess.gg와 같은 TFT 게임 사이트에서 영감을 �
 - **검색**: 다른 사용자가 게시한 덱을 검색할 수 있습니다.
 
 ## 사용 스택
-- **백엔드**: Node.js
+- **백엔드**: SpringBoot
 - **프론트엔드**: JavaScript (Vanilla JS)
 - **데이터베이스**: MySQL
 
