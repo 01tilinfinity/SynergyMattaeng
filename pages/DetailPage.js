@@ -1,6 +1,3 @@
-// ✅ doc.html에 들어갈 doc.js
-// 덱 ID 기반으로 챔피언 시너지와 선택된 챔피언들을 WritePage.js와 동일한 형식으로 렌더링
-
 import { getChampions } from "../services/State.js";
 
 let traitsData = {};
@@ -16,6 +13,7 @@ export async function renderDeckDetailPage() {
   app.innerHTML = `
     <div id="auth-area" style="display: flex; justify-content: flex-end; margin-bottom: 10px;"></div>
     <h1>덱 상세 보기</h1>
+    <div id="likes-info" style="margin-bottom: 10px; font-size: 16px; font-weight: bold;"></div>
     <div id="synergy-bar" class="synergy-bar"></div>
     <div id="selected-champions" class="selected-container"></div>
   `;
@@ -34,6 +32,54 @@ export async function renderDeckDetailPage() {
 
   const res = await fetch(`http://localhost:8080/api/decks/${deckId}`);
   const deck = await res.json();
+
+  // ✅ 추천 수 표시
+  const likesInfo = document.getElementById("likes-info");
+  likesInfo.textContent = `❤️ 추천 수: ${deck.likes}`;
+
+  // ✅ 추천 버튼 조건부 노출
+  const username = sessionStorage.getItem("username");
+  const likeBtn = document.getElementById("like-button");
+  const likedKey = `liked_${deckId}`;
+
+  if (username && username !== deck.username) {
+    const alreadyLiked = localStorage.getItem(likedKey);
+
+    if (alreadyLiked) {
+      likeBtn.disabled = true;
+      likeBtn.textContent = "❤️ 이미 추천함";
+      likeBtn.style.display = "inline-block";
+    } else {
+      likeBtn.style.display = "inline-block";
+      likeBtn.onclick = () => {
+        if (localStorage.getItem(likedKey)) {
+          alert("이미 좋아요 한 게시글입니다.");
+          return;
+        }
+
+        fetch(`http://localhost:8080/api/decks/${deckId}/like`, {
+          method: "POST"
+        })
+          .then((res) => {
+            if (!res.ok) throw new Error("추천 실패");
+            return res.json();
+          })
+          .then((updatedDeck) => {
+            localStorage.setItem(likedKey, "true");
+            document.getElementById("likes-info").textContent = `❤️ 추천 수: ${updatedDeck.likes}`;
+            likeBtn.textContent = "❤️ 이미 추천함";
+            likeBtn.disabled = true;
+            alert("추천했습니다!");
+          })
+          .catch(() => alert("추천에 실패했습니다."));
+      };
+    }
+  } else if (username === deck.username) {
+    likeBtn.style.display = "inline-block";
+    likeBtn.onclick = () => {
+      alert("내 게시글에는 좋아요를 누를 수 없어요!");
+    };
+  }
 
   let championIds = [];
   try {
@@ -215,4 +261,22 @@ function renderAuthArea() {
     document.getElementById("login-btn").addEventListener("click", () => alert("로그인 기능은 index.html에서 이용해주세요."));
     document.getElementById("signup-btn").addEventListener("click", () => alert("회원가입 기능은 index.html에서 이용해주세요."));
   }
+
+  const backButton = document.createElement("a");
+  backButton.href = "list.html";
+  backButton.textContent = "← 목록으로 돌아가기";
+  backButton.style.display = "inline-block";
+  backButton.style.marginTop = "20px";
+  backButton.style.fontWeight = "bold";
+  backButton.style.color = "#207ac7";
+  backButton.style.textDecoration = "none";
+
+  backButton.addEventListener("mouseover", () => {
+    backButton.style.textDecoration = "underline";
+  });
+  backButton.addEventListener("mouseout", () => {
+    backButton.style.textDecoration = "none";
+  });
+
+  document.getElementById("app").appendChild(backButton);
 }

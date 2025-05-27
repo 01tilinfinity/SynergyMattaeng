@@ -42,9 +42,12 @@ public class DeckController {
             deck.setUsername(username);
             deck.setCreatedAt(LocalDate.now());
 
-            // List → JSON String
+            // List → JSON 문자열
             String championsJson = objectMapper.writeValueAsString(champions);
             deck.setChampions(championsJson);
+
+            // 추천 수 초기화
+            deck.setLikes(0);
 
             return deckRepository.save(deck);
         } catch (Exception e) {
@@ -52,7 +55,7 @@ public class DeckController {
         }
     }
 
-    // ✅ 덱 목록 조회 (최신순)
+    // ✅ 덱 전체 목록 조회 (최신순 정렬)
     @GetMapping
     public List<Deck> getDecks() {
         return deckRepository.findAllByOrderByCreatedAtDesc();
@@ -62,5 +65,13 @@ public class DeckController {
     @GetMapping("/{id}")
     public Deck getDeckById(@PathVariable Long id) {
         return deckRepository.findById(id).orElse(null);
+    }
+
+    // ✅ 추천 API
+    @PostMapping("/{id}/like")
+    public Deck likeDeck(@PathVariable Long id) {
+        Deck deck = deckRepository.findById(id).orElseThrow(() -> new RuntimeException("덱을 찾을 수 없습니다."));
+        deck.setLikes(deck.getLikes() + 1);
+        return deckRepository.save(deck);
     }
 }
