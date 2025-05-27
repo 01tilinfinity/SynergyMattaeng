@@ -1,24 +1,51 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>덱 목록</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    thead {
+      background-color: #000;
+      color: #fff;
+      font-size: 18px;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    td a {
+      text-decoration: none;
+      color: #207ac7;
+      font-weight: bold;
+    }
+    td a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
   <div id="app">
-    <h1 style="margin-bottom: 20px;">등록된 덱 목록</h1>
-    
-    <!-- 덱 목록을 렌더링할 영역 -->
-    <div id="deck-list" class="deck-list"></div>
-
-    <div style="margin-top: 30px;">
-      <a href="index.html" style="font-weight: bold; color: #207ac7; text-decoration: none;">🏠 돌아가기</a>
-    </div>
+    <h1>등록된 덱 목록</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>번호</th>
+          <th>덱 제목</th>
+          <th>작성자</th>
+          <th>작성일</th>
+          <th>추천수</th> <!-- ✅ 추천수 컬럼 추가 -->
+        </tr>
+      </thead>
+      <tbody id="deck-tbody"></tbody>
+    </table>
+    <p><a href="index.html">🏠 돌아가기</a></p>
   </div>
-
-  <!-- JS 연결 -->
   <script type="module" src="pages/ListPage.js"></script>
 </body>
 </html>

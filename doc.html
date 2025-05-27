@@ -4,9 +4,49 @@
   <meta charset="UTF-8" />
   <title>덱 상세 보기</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    #nav-buttons {
+      margin: 20px 0;
+      display: flex;
+      gap: 10px;
+    }
+
+    #nav-buttons a,
+    #nav-buttons button {
+      padding: 8px 16px;
+      background-color: #207ac7;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    #nav-buttons a:hover,
+    #nav-buttons button:hover {
+      background-color: #155a96;
+    }
+
+    #likes-count {
+      margin-top: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
 </head>
 <body>
   <div id="app"></div>
+
+  <!-- 🔙 목록으로 & ❤️ 추천 버튼 영역 -->
+  <div id="nav-buttons">
+    <a href="list.html">🏠 목록으로</a>
+    <button id="like-button" style="display: none;">❤️ 추천하기</button>
+  </div>
+
+  <div id="likes-count"></div>
+
   <script type="module">
     import { renderDeckDetailPage } from "./pages/DetailPage.js";
     renderDeckDetailPage();
