@@ -1,10 +1,10 @@
-package com.team02.webproj;
+package com.synergy.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class WebprojApplicationTests {
+class BackendApplicationTests {
 
 	@Test
 	void contextLoads() {

@@ -1,13 +1,11 @@
-package com.team02.webproj;
+package com.synergy.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WebprojApplication {
-
+public class BackendApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(WebprojApplication.class, args);
+		SpringApplication.run(BackendApplication.class, args);
 	}
-
 }
