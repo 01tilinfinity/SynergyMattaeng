@@ -259,6 +259,7 @@ export async function renderWritePage() {
     list.appendChild(card);
   });
   renderSynergyBar();
+  renderSubmitButton(); // 덱 등록 버튼 추가
 }
 
 function renderSynergyBar() {
@@ -382,4 +383,37 @@ async function ensureTraitsAndRenderAll() {
 
   renderSelectedChampions();
   renderSynergyBar();
+}
+
+function renderSubmitButton() {
+  const button = document.createElement("button");
+  button.textContent = "덱 등록하기";
+  button.style.marginTop = "20px";
+  button.addEventListener("click", () => {
+    const deckName = document.getElementById("deck-name").value.trim();
+    const username = sessionStorage.getItem("username");
+    if (!username) return alert("로그인이 필요합니다!");
+    if (!deckName) return alert("덱 이름을 입력하세요!");
+    if (selectedChampions.length === 0) return alert("챔피언을 선택하세요!");
+
+    const deck = {
+      name: deckName,
+      username,
+      champions: selectedChampions.map(c => c.id)
+    };
+
+    fetch("http://localhost:8080/api/decks", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(deck),
+    })
+      .then(res => {
+        if (!res.ok) throw new Error("등록 실패");
+        alert("덱이 등록되었습니다!");
+        location.href = "list.html";
+      })
+      .catch(() => alert("덱 등록 실패"));
+  });
+
+  document.getElementById("app").appendChild(button);
 }
