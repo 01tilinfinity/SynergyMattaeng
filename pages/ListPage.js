@@ -73,5 +73,19 @@ document.addEventListener("DOMContentLoaded", () => {
     renderDecks(filtered);
   });
 
+  // ✅ [추가] 검색 버튼 클릭 시도 동일한 필터링 수행
+  const searchBtn = document.getElementById("search-btn");
+  if (searchBtn) {
+    searchBtn.addEventListener("click", () => {
+      const keyword = searchInput.value.toLowerCase();
+      const filtered = allDecks.filter(
+        (deck) =>
+          deck.name.toLowerCase().includes(keyword) ||
+          deck.username.toLowerCase().includes(keyword)
+      );
+      renderDecks(filtered);
+    });
+  }
+
   fetchAndRenderDecks();
 });

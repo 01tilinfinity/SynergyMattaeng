@@ -506,3 +506,36 @@ button:hover {
   gap: 8px;
 }
 
+.scsa-logo {
+  display: inline-block;
+  background-color: #1428a0;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  font-family: Arial, sans-serif;
+  border-radius: 50px;
+  padding: 10px 24px;
+  margin-right: 20px;
+  vertical-align: middle;
+}
+.back-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.back-button {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  background-color: #207ac7;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.back-button:hover {
+  background-color: #145a99;
+}

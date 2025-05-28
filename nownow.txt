@@ -1,0 +1,366 @@
+Folder PATH listing
+Volume serial number is 2253-DE2B
+C:.
+¦¢   doc.html
+¦¢   index.html
+¦¢   list.html
+¦¢   main.js
+¦¢   now.txt
+¦¢   nownow.txt
+¦¢   package-lock.json
+¦¢   package.json
+¦¢   README.md
+¦¢   style.css
+¦¢   
+¦§¦¡¦¡¦¡assets
+¦¢   ¦§¦¡¦¡¦¡champions
+¦¢   ¦§¦¡¦¡¦¡images
+¦¢   ¦¢   ¦¢   alistar.jpg
+¦¢   ¦¢   ¦¢   annie.jpg
+¦¢   ¦¢   ¦¢   aphelios.jpg
+¦¢   ¦¢   ¦¢   aurora.jpg
+¦¢   ¦¢   ¦¢   brand.jpg
+¦¢   ¦¢   ¦¢   braum.jpg
+¦¢   ¦¢   ¦¢   choGath.jpg
+¦¢   ¦¢   ¦¢   darius.jpg
+¦¢   ¦¢   ¦¢   draven.jpg
+¦¢   ¦¢   ¦¢   drMundo.jpg
+¦¢   ¦¢   ¦¢   ekko.jpg
+¦¢   ¦¢   ¦¢   elise.jpg
+¦¢   ¦¢   ¦¢   fiddlesticks.jpg
+¦¢   ¦¢   ¦¢   galio.jpg
+¦¢   ¦¢   ¦¢   garen.jpg
+¦¢   ¦¢   ¦¢   gragas.jpg
+¦¢   ¦¢   ¦¢   graves.jpg
+¦¢   ¦¢   ¦¢   illaoi.jpg
+¦¢   ¦¢   ¦¢   jarvanIV.jpg
+¦¢   ¦¢   ¦¢   jax.jpg
+¦¢   ¦¢   ¦¢   jhin.jpg
+¦¢   ¦¢   ¦¢   jinx.jpg
+¦¢   ¦¢   ¦¢   kindred.jpg
+¦¢   ¦¢   ¦¢   kobuko.jpg
+¦¢   ¦¢   ¦¢   kogMaw.jpg
+¦¢   ¦¢   ¦¢   leblanc.jpg
+¦¢   ¦¢   ¦¢   leona.jpg
+¦¢   ¦¢   ¦¢   missFortune.jpg
+¦¢   ¦¢   ¦¢   mordekaiser.jpg
+¦¢   ¦¢   ¦¢   morgana.jpg
+¦¢   ¦¢   ¦¢   naafiri.jpg
+¦¢   ¦¢   ¦¢   neeko.jpg
+¦¢   ¦¢   ¦¢   nidalee.jpg
+¦¢   ¦¢   ¦¢   poppy.jpg
+¦¢   ¦¢   ¦¢   renekton.jpg
+¦¢   ¦¢   ¦¢   rengar.jpg
+¦¢   ¦¢   ¦¢   rhaast.jpg
+¦¢   ¦¢   ¦¢   samira.jpg
+¦¢   ¦¢   ¦¢   sejuani.jpg
+¦¢   ¦¢   ¦¢   senna.jpg
+¦¢   ¦¢   ¦¢   seraphine.jpg
+¦¢   ¦¢   ¦¢   shaco.jpg
+¦¢   ¦¢   ¦¢   shyvana.jpg
+¦¢   ¦¢   ¦¢   skarner.jpg
+¦¢   ¦¢   ¦¢   sylas.jpg
+¦¢   ¦¢   ¦¢   twistedFate.jpg
+¦¢   ¦¢   ¦¢   urgot.jpg
+¦¢   ¦¢   ¦¢   varus.jpg
+¦¢   ¦¢   ¦¢   vayne.jpg
+¦¢   ¦¢   ¦¢   veigar.jpg
+¦¢   ¦¢   ¦¢   vex.jpg
+¦¢   ¦¢   ¦¢   vi.jpg
+¦¢   ¦¢   ¦¢   viego.jpg
+¦¢   ¦¢   ¦¢   xayah.jpg
+¦¢   ¦¢   ¦¢   yuumi.jpg
+¦¢   ¦¢   ¦¢   zac.jpg
+¦¢   ¦¢   ¦¢   zed.jpg
+¦¢   ¦¢   ¦¢   zeri.jpg
+¦¢   ¦¢   ¦¢   ziggs.jpg
+¦¢   ¦¢   ¦¢   zyra.jpg
+¦¢   ¦¢   ¦¢   
+¦¢   ¦¢   ¦¦¦¡¦¡¦¡selected
+¦¢   ¦¢           alistar.jpg
+¦¢   ¦¢           annie.jpg
+¦¢   ¦¢           aphelios.jpg
+¦¢   ¦¢           aurora.jpg
+¦¢   ¦¢           brand.jpg
+¦¢   ¦¢           braum.jpg
+¦¢   ¦¢           choGath.jpg
+¦¢   ¦¢           darius.jpg
+¦¢   ¦¢           draven.jpg
+¦¢   ¦¢           drMundo.jpg
+¦¢   ¦¢           ekko.jpg
+¦¢   ¦¢           elise.jpg
+¦¢   ¦¢           fiddlesticks.jpg
+¦¢   ¦¢           galio.jpg
+¦¢   ¦¢           garen.jpg
+¦¢   ¦¢           gragas.jpg
+¦¢   ¦¢           graves.jpg
+¦¢   ¦¢           illaoi.jpg
+¦¢   ¦¢           jarvanIV.jpg
+¦¢   ¦¢           jax.jpg
+¦¢   ¦¢           jhin.jpg
+¦¢   ¦¢           jinx.jpg
+¦¢   ¦¢           kindred.jpg
+¦¢   ¦¢           kobuko.jpg
+¦¢   ¦¢           kogMaw.jpg
+¦¢   ¦¢           leblanc.jpg
+¦¢   ¦¢           leona.jpg
+¦¢   ¦¢           missFortune.jpg
+¦¢   ¦¢           mordekaiser.jpg
+¦¢   ¦¢           morgana.jpg
+¦¢   ¦¢           naafiri.jpg
+¦¢   ¦¢           neeko.jpg
+¦¢   ¦¢           nidalee.jpg
+¦¢   ¦¢           poppy.jpg
+¦¢   ¦¢           renekton.jpg
+¦¢   ¦¢           rengar.jpg
+¦¢   ¦¢           rhaast.jpg
+¦¢   ¦¢           samira.jpg
+¦¢   ¦¢           sejuani.jpg
+¦¢   ¦¢           senna.jpg
+¦¢   ¦¢           seraphine.jpg
+¦¢   ¦¢           shaco.jpg
+¦¢   ¦¢           shyvana.jpg
+¦¢   ¦¢           skarner.jpg
+¦¢   ¦¢           sylas.jpg
+¦¢   ¦¢           twistedFate.jpg
+¦¢   ¦¢           urgot.jpg
+¦¢   ¦¢           varus.jpg
+¦¢   ¦¢           vayne.jpg
+¦¢   ¦¢           veigar.jpg
+¦¢   ¦¢           vex.jpg
+¦¢   ¦¢           vi.jpg
+¦¢   ¦¢           viego.jpg
+¦¢   ¦¢           xayah.jpg
+¦¢   ¦¢           yuumi.jpg
+¦¢   ¦¢           zac.jpg
+¦¢   ¦¢           zed.jpg
+¦¢   ¦¢           zeri.jpg
+¦¢   ¦¢           ziggs.jpg
+¦¢   ¦¢           zyra.jpg
+¦¢   ¦¢           
+¦¢   ¦§¦¡¦¡¦¡trait-backgrounds
+¦¢   ¦¢       bronze.svg
+¦¢   ¦¢       chromatic.svg
+¦¢   ¦¢       darken.svg
+¦¢   ¦¢       gold.svg
+¦¢   ¦¢       silver.svg
+¦¢   ¦¢       unique.svg
+¦¢   ¦¢       
+¦¢   ¦¦¦¡¦¡¦¡traits
+¦¢           aMP.svg
+¦¢           animaSquad.svg
+¦¢           bastion.svg
+¦¢           boomBots.svg
+¦¢           bruiser.svg
+¦¢           cyberboss.svg
+¦¢           cypher.svg
+¦¢           divinicorp.svg
+¦¢           dynamo.svg
+¦¢           executioner.svg
+¦¢           exotech.svg
+¦¢           godoftheNet.svg
+¦¢           goldenOx.svg
+¦¢           marksman.svg
+¦¢           nitro.svg
+¦¢           overlord.svg
+¦¢           rapidfire.svg
+¦¢           slayer.svg
+¦¢           soulKiller.svg
+¦¢           strategist.svg
+¦¢           streetDemon.svg
+¦¢           syndicate.svg
+¦¢           techie.svg
+¦¢           vanguard.svg
+¦¢           virus.svg
+¦¢           
+¦§¦¡¦¡¦¡backend
+¦¢   ¦¢   .gitattributes
+¦¢   ¦¢   .gitignore
+¦¢   ¦¢   build.gradle
+¦¢   ¦¢   gradlew
+¦¢   ¦¢   gradlew.bat
+¦¢   ¦¢   settings.gradle
+¦¢   ¦¢   
+¦¢   ¦§¦¡¦¡¦¡.gradle
+¦¢   ¦¢   ¦¢   file-system.probe
+¦¢   ¦¢   ¦¢   
+¦¢   ¦¢   ¦§¦¡¦¡¦¡8.13
+¦¢   ¦¢   ¦¢   ¦¢   gc.properties
+¦¢   ¦¢   ¦¢   ¦¢   
+¦¢   ¦¢   ¦¢   ¦§¦¡¦¡¦¡checksums
+¦¢   ¦¢   ¦¢   ¦¢       checksums.lock
+¦¢   ¦¢   ¦¢   ¦¢       
+¦¢   ¦¢   ¦¢   ¦§¦¡¦¡¦¡executionHistory
+¦¢   ¦¢   ¦¢   ¦¢       executionHistory.bin
+¦¢   ¦¢   ¦¢   ¦¢       executionHistory.lock
+¦¢   ¦¢   ¦¢   ¦¢       
+¦¢   ¦¢   ¦¢   ¦§¦¡¦¡¦¡expanded
+¦¢   ¦¢   ¦¢   ¦§¦¡¦¡¦¡fileChanges
+¦¢   ¦¢   ¦¢   ¦¢       last-build.bin
+¦¢   ¦¢   ¦¢   ¦¢       
+¦¢   ¦¢   ¦¢   ¦§¦¡¦¡¦¡fileHashes
+¦¢   ¦¢   ¦¢   ¦¢       fileHashes.bin
+¦¢   ¦¢   ¦¢   ¦¢       fileHashes.lock
+¦¢   ¦¢   ¦¢   ¦¢       resourceHashesCache.bin
+¦¢   ¦¢   ¦¢   ¦¢       
+¦¢   ¦¢   ¦¢   ¦¦¦¡¦¡¦¡vcsMetadata
+¦¢   ¦¢   ¦§¦¡¦¡¦¡buildOutputCleanup
+¦¢   ¦¢   ¦¢       buildOutputCleanup.lock
+¦¢   ¦¢   ¦¢       cache.properties
+¦¢   ¦¢   ¦¢       outputFiles.bin
+¦¢   ¦¢   ¦¢       
+¦¢   ¦¢   ¦§¦¡¦¡¦¡nb-cache
+¦¢   ¦¢   ¦¢   ¦¢   subprojects.ser
+¦¢   ¦¢   ¦¢   ¦¢   
+¦¢   ¦¢   ¦¢   ¦§¦¡¦¡¦¡backend-1520189100
+¦¢   ¦¢   ¦¢   ¦¢       project-info.ser
+¦¢   ¦¢   ¦¢   ¦¢       
+¦¢   ¦¢   ¦¢   ¦¦¦¡¦¡¦¡trust
+¦¢   ¦¢   ¦¢           C0718506EB7A3A57EC45B597CAF7072C85EDA9868E153D537E157215342486CE
+¦¢   ¦¢   ¦¢           
+¦¢   ¦¢   ¦¦¦¡¦¡¦¡vcs-1
+¦¢   ¦¢           gc.properties
+¦¢   ¦¢           
+¦¢   ¦§¦¡¦¡¦¡bin
+¦¢   ¦¢   ¦§¦¡¦¡¦¡default
+¦¢   ¦¢   ¦§¦¡¦¡¦¡generated-sources
+¦¢   ¦¢   ¦¢   ¦¦¦¡¦¡¦¡annotations
+¦¢   ¦¢   ¦§¦¡¦¡¦¡generated-test-sources
+¦¢   ¦¢   ¦¢   ¦¦¦¡¦¡¦¡annotations
+¦¢   ¦¢   ¦¦¦¡¦¡¦¡main
+¦¢   ¦¢       ¦¦¦¡¦¡¦¡templates
+¦¢   ¦§¦¡¦¡¦¡build
+¦¢   ¦¢   ¦¢   resolvedMainClassName
+¦¢   ¦¢   ¦¢   
+¦¢   ¦¢   ¦§¦¡¦¡¦¡classes
+¦¢   ¦¢   ¦¢   ¦¦¦¡¦¡¦¡java
+¦¢   ¦¢   ¦¢       ¦§¦¡¦¡¦¡main
+¦¢   ¦¢   ¦¢       ¦¢   ¦¦¦¡¦¡¦¡com
+¦¢   ¦¢   ¦¢       ¦¢       ¦¦¦¡¦¡¦¡synergy
+¦¢   ¦¢   ¦¢       ¦¢           ¦¦¦¡¦¡¦¡backend
+¦¢   ¦¢   ¦¢       ¦¢               ¦¢   BackendApplication.class
+¦¢   ¦¢   ¦¢       ¦¢               ¦¢   
+¦¢   ¦¢   ¦¢       ¦¢               ¦§¦¡¦¡¦¡config
+¦¢   ¦¢   ¦¢       ¦¢               ¦¢       WebSecurityConfig$1.class
+¦¢   ¦¢   ¦¢       ¦¢               ¦¢       WebSecurityConfig.class
+¦¢   ¦¢   ¦¢       ¦¢               ¦¢       
+¦¢   ¦¢   ¦¢       ¦¢               ¦§¦¡¦¡¦¡controller
+¦¢   ¦¢   ¦¢       ¦¢               ¦¢       DeckController.class
+¦¢   ¦¢   ¦¢       ¦¢               ¦¢       UserController.class
+¦¢   ¦¢   ¦¢       ¦¢               ¦¢       
+¦¢   ¦¢   ¦¢       ¦¢               ¦§¦¡¦¡¦¡domain
+¦¢   ¦¢   ¦¢       ¦¢               ¦¢       Deck.class
+¦¢   ¦¢   ¦¢       ¦¢               ¦¢       User.class
+¦¢   ¦¢   ¦¢       ¦¢               ¦¢       
+¦¢   ¦¢   ¦¢       ¦¢               ¦¦¦¡¦¡¦¡repository
+¦¢   ¦¢   ¦¢       ¦¢                       DeckRepository.class
+¦¢   ¦¢   ¦¢       ¦¢                       UserRepository.class
+¦¢   ¦¢   ¦¢       ¦¢                       
+¦¢   ¦¢   ¦¢       ¦¦¦¡¦¡¦¡test
+¦¢   ¦¢   ¦¢           ¦¦¦¡¦¡¦¡com
+¦¢   ¦¢   ¦¢               ¦¦¦¡¦¡¦¡synergy
+¦¢   ¦¢   ¦¢                   ¦¦¦¡¦¡¦¡backend
+¦¢   ¦¢   ¦¢                           BackendApplicationTests.class
+¦¢   ¦¢   ¦¢                           
+¦¢   ¦¢   ¦§¦¡¦¡¦¡generated
+¦¢   ¦¢   ¦¢   ¦¦¦¡¦¡¦¡sources
+¦¢   ¦¢   ¦¢       ¦§¦¡¦¡¦¡annotationProcessor
+¦¢   ¦¢   ¦¢       ¦¢   ¦¦¦¡¦¡¦¡java
+¦¢   ¦¢   ¦¢       ¦¢       ¦§¦¡¦¡¦¡main
+¦¢   ¦¢   ¦¢       ¦¢       ¦¦¦¡¦¡¦¡test
+¦¢   ¦¢   ¦¢       ¦¦¦¡¦¡¦¡headers
+¦¢   ¦¢   ¦¢           ¦¦¦¡¦¡¦¡java
+¦¢   ¦¢   ¦¢               ¦§¦¡¦¡¦¡main
+¦¢   ¦¢   ¦¢               ¦¦¦¡¦¡¦¡test
+¦¢   ¦¢   ¦§¦¡¦¡¦¡libs
+¦¢   ¦¢   ¦¢       backend-0.0.1-SNAPSHOT-plain.jar
+¦¢   ¦¢   ¦¢       backend-0.0.1-SNAPSHOT.jar
+¦¢   ¦¢   ¦¢       
+¦¢   ¦¢   ¦§¦¡¦¡¦¡reports
+¦¢   ¦¢   ¦¢   ¦¦¦¡¦¡¦¡problems
+¦¢   ¦¢   ¦¢           problems-report.html
+¦¢   ¦¢   ¦¢           
+¦¢   ¦¢   ¦§¦¡¦¡¦¡resources
+¦¢   ¦¢   ¦¢   ¦¦¦¡¦¡¦¡main
+¦¢   ¦¢   ¦¢       ¦¢   application.properties
+¦¢   ¦¢   ¦¢       ¦¢   
+¦¢   ¦¢   ¦¢       ¦§¦¡¦¡¦¡static
+¦¢   ¦¢   ¦¢       ¦¦¦¡¦¡¦¡templates
+¦¢   ¦¢   ¦¦¦¡¦¡¦¡tmp
+¦¢   ¦¢       ¦§¦¡¦¡¦¡bootJar
+¦¢   ¦¢       ¦¢       MANIFEST.MF
+¦¢   ¦¢       ¦¢       
+¦¢   ¦¢       ¦§¦¡¦¡¦¡compileJava
+¦¢   ¦¢       ¦¢       previous-compilation-data.bin
+¦¢   ¦¢       ¦¢       
+¦¢   ¦¢       ¦§¦¡¦¡¦¡compileTestJava
+¦¢   ¦¢       ¦¢       previous-compilation-data.bin
+¦¢   ¦¢       ¦¢       
+¦¢   ¦¢       ¦¦¦¡¦¡¦¡jar
+¦¢   ¦¢               MANIFEST.MF
+¦¢   ¦¢               
+¦¢   ¦§¦¡¦¡¦¡gradle
+¦¢   ¦¢   ¦¦¦¡¦¡¦¡wrapper
+¦¢   ¦¢           gradle-wrapper.jar
+¦¢   ¦¢           gradle-wrapper.properties
+¦¢   ¦¢           
+¦¢   ¦¦¦¡¦¡¦¡src
+¦¢       ¦§¦¡¦¡¦¡main
+¦¢       ¦¢   ¦§¦¡¦¡¦¡java
+¦¢       ¦¢   ¦¢   ¦¦¦¡¦¡¦¡com
+¦¢       ¦¢   ¦¢       ¦¦¦¡¦¡¦¡synergy
+¦¢       ¦¢   ¦¢           ¦¦¦¡¦¡¦¡backend
+¦¢       ¦¢   ¦¢               ¦¢   BackendApplication.java
+¦¢       ¦¢   ¦¢               ¦¢   
+¦¢       ¦¢   ¦¢               ¦§¦¡¦¡¦¡config
+¦¢       ¦¢   ¦¢               ¦¢       WebSecurityConfig.java
+¦¢       ¦¢   ¦¢               ¦¢       
+¦¢       ¦¢   ¦¢               ¦§¦¡¦¡¦¡controller
+¦¢       ¦¢   ¦¢               ¦¢       DeckController.java
+¦¢       ¦¢   ¦¢               ¦¢       UserController.java
+¦¢       ¦¢   ¦¢               ¦¢       
+¦¢       ¦¢   ¦¢               ¦§¦¡¦¡¦¡domain
+¦¢       ¦¢   ¦¢               ¦¢       Deck.java
+¦¢       ¦¢   ¦¢               ¦¢       User.java
+¦¢       ¦¢   ¦¢               ¦¢       
+¦¢       ¦¢   ¦¢               ¦¦¦¡¦¡¦¡repository
+¦¢       ¦¢   ¦¢                       DeckRepository.java
+¦¢       ¦¢   ¦¢                       UserRepository.java
+¦¢       ¦¢   ¦¢                       
+¦¢       ¦¢   ¦¦¦¡¦¡¦¡resources
+¦¢       ¦¢       ¦¢   application.properties
+¦¢       ¦¢       ¦¢   
+¦¢       ¦¢       ¦§¦¡¦¡¦¡static
+¦¢       ¦¢       ¦¦¦¡¦¡¦¡templates
+¦¢       ¦¦¦¡¦¡¦¡test
+¦¢           ¦¦¦¡¦¡¦¡java
+¦¢               ¦¦¦¡¦¡¦¡com
+¦¢                   ¦¦¦¡¦¡¦¡synergy
+¦¢                       ¦¦¦¡¦¡¦¡backend
+¦¢                               BackendApplicationTests.java
+¦¢                               
+¦§¦¡¦¡¦¡components
+¦¢       ChampionCard.js
+¦¢       InputField.js
+¦¢       SelectedChampionSlot.js
+¦¢       SynergyBar.js
+¦¢       
+¦§¦¡¦¡¦¡data
+¦¢       champions.json
+¦¢       traits.json
+¦¢       
+¦§¦¡¦¡¦¡pages
+¦¢       BoardPage.js
+¦¢       DetailPage.js
+¦¢       doc.js
+¦¢       ListPage.js
+¦¢       WritePage.js
+¦¢       
+¦§¦¡¦¡¦¡services
+¦¢       State.js
+¦¢       Storage.js
+¦¢       
+¦¦¦¡¦¡¦¡utils
+        router.js
+        synergyCalculator.js
+        

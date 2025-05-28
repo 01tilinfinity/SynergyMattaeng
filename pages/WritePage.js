@@ -381,8 +381,43 @@ export async function renderWritePage() {
   const app = document.getElementById("app");
   app.innerHTML = `
     <div id="auth-area" style="display: flex; justify-content: flex-end; margin-bottom: 10px;"></div>
-    <h1>챔피언 선택</h1>
-    <input id="deck-name" type="text" placeholder="덱 이름을 입력하세요" />
+    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+      <div style="
+        background-color: #1428a0;
+        color: white;
+        font-weight: bold;
+        font-size: 24px;
+        font-family: 'Roboto Condensed', sans-serif;
+        padding: 10px 30px;
+        border-radius: 50% / 50%;
+        transform: skewX(-20deg);
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 48px;
+      ">
+        <span style="transform: skewX(20deg); display: inline-block;">SynergyMattaeng</span>
+      </div>
+      <h1 style="margin: 0;">챔피언 선택</h1>
+    </div>
+    <div style="display: flex; justify-content: center; margin: 40px 0 20px;">
+      <input
+        id="deck-name"
+        type="text"
+        placeholder="덱 이름을 입력하세요"
+        style="
+          padding: 14px 20px;
+          font-size: 16px;
+          border: 3px solid #1428a0;
+          border-radius: 12px;
+          width: 80%;
+          max-width: 800px;
+          box-sizing: border-box;
+        "
+      />
+    </div>
+
     <h3>선택한 챔피언 (최대 10명)</h3>
     <div id="synergy-bar" class="synergy-bar"></div>
     <div id="selected-champions" class="selected-container"></div>
@@ -399,6 +434,8 @@ export async function renderWritePage() {
   renderSynergyBar();
   renderSubmitButton(); // 덱 등록 버튼 추가
 }
+
+
 
 function renderSynergyBar() {
   const synergyBar = document.getElementById("synergy-bar");

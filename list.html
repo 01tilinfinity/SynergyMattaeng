@@ -4,6 +4,12 @@
   <meta charset="UTF-8" />
   <title>덱 목록</title>
   <link rel="stylesheet" href="style.css" />
+
+  <!-- ✅ Roboto Condensed 폰트 추가 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+
   <style>
     table {
       width: 100%;
@@ -28,22 +34,61 @@
       text-decoration: underline;
     }
 
-    /* 🔍 검색창 스타일 */
+    /* 🔍 검색창 + 버튼 스타일 */
     #search-input {
-      width: 100%;
+      flex: 1;
       padding: 10px;
       font-size: 16px;
-      margin-bottom: 20px;
       box-sizing: border-box;
+    }
+    #search-btn {
+      padding: 10px 16px;
+      font-size: 16px;
+      background-color: #207ac7;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    /* 🌟 삼성 스타일 로고 */
+    .scsa-logo-container {
+      background-color: #1428a0;
+      color: white;
+      font-weight: bold;
+      font-size: 24px;
+      font-family: 'Roboto Condensed', sans-serif;
+      padding: 10px 30px;
+      border-radius: 50% / 50%;
+      transform: skewX(-20deg);
+      margin-right: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 48px;
+    }
+
+    .scsa-logo-container span {
+      transform: skewX(20deg);
+      display: inline-block;
     }
   </style>
 </head>
 <body>
   <div id="app">
-    <h1>등록된 덱 목록</h1>
+    <!-- ✅ 삼성 스타일 로고 + 제목 -->
+    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+      <div class="scsa-logo-container">
+        <span>SynergyMattaeng</span>
+      </div>
+      <h1 style="margin: 0;">등록된 덱 목록</h1>
+    </div>
 
-    <!-- ✅ 검색창 추가 -->
-    <input id="search-input" type="text" placeholder="덱 제목 또는 작성자 검색" />
+    <!-- ✅ 검색창 + 버튼 -->
+    <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+      <input id="search-input" type="text" placeholder="덱 제목 또는 작성자 검색" />
+      <button id="search-btn">검색</button>
+    </div>
 
     <table>
       <thead>
@@ -52,13 +97,16 @@
           <th>덱 제목</th>
           <th>작성자</th>
           <th>작성일</th>
-          <th>추천수</th> <!-- ✅ 추천수 컬럼 추가 -->
+          <th>추천수</th>
         </tr>
       </thead>
       <tbody id="deck-tbody"></tbody>
     </table>
     
-    <p><a href="index.html">🏠 돌아가기</a></p>
+    <div class="back-wrapper">
+      <a href="index.html" class="back-button">🏠 돌아가기</a>
+    </div>
+    
   </div>
   <script type="module" src="pages/ListPage.js"></script>
 </body>
