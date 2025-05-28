@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>마이페이지</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    thead {
+      background-color: #000;
+      color: #fff;
+      font-size: 18px;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    td a {
+      text-decoration: none;
+      color: #207ac7;
+      font-weight: bold;
+    }
+    td a:hover {
+      text-decoration: underline;
+    }
+
+    .scsa-logo-container {
+      background-color: #1428a0;
+      color: white;
+      font-weight: bold;
+      font-size: 24px;
+      font-family: 'Roboto Condensed', sans-serif;
+      padding: 10px 30px;
+      border-radius: 50% / 50%;
+      transform: skewX(-20deg);
+      margin-right: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 48px;
+    }
+
+    .scsa-logo-container span {
+      transform: skewX(20deg);
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+      <div class="scsa-logo-container">
+        <span>SynergyMattaeng</span>
+      </div>
+      <h1 style="margin: 0;">내가 쓴 덱 목록</h1>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>번호</th>
+          <th>덱 제목</th>
+          <th>작성일</th>
+          <th>추천수</th>
+        </tr>
+      </thead>
+      <!-- ✅ JS와 맞춰서 id 수정함 -->
+      <tbody id="deck-tbody"></tbody>
+    </table>
+
+    <div class="back-wrapper">
+      <a href="list.html" class="back-button">🔙 목록으로</a>
+    </div>
+  </div>
+
+  <script type="module" src="pages/MyPage.js"></script>
+</body>
+</html>

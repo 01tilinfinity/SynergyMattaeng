@@ -74,4 +74,10 @@ public class DeckController {
         deck.setLikes(deck.getLikes() + 1);
         return deckRepository.save(deck);
     }
+
+    // ✅ 특정 유저의 덱 목록 조회 (마이페이지용)
+    @GetMapping("/user/{username}")
+    public List<Deck> getDecksByUsername(@PathVariable String username) {
+        return deckRepository.findByUsername(username);
+    }
 }

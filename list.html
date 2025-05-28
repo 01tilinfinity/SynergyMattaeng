@@ -93,10 +93,36 @@
     .sort-buttons button:hover {
       background-color: #2b2c3b;
     }
+
+    /* ✅ 로그인 상태 표시 영역 */
+    #auth-area {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    #auth-area button {
+      padding: 6px 10px;
+      font-size: 14px;
+      border: none;
+      border-radius: 6px;
+      background-color: #333446;
+      color: white;
+      cursor: pointer;
+    }
+
+    #auth-area button:hover {
+      background-color: #2a2b3a;
+    }
   </style>
 </head>
 <body>
   <div id="app">
+    <!-- ✅ 로그인 상태 영역 -->
+    <div id="auth-area"></div>
+
     <!-- ✅ 삼성 스타일 로고 + 제목 -->
     <div style="display: flex; align-items: center; margin-bottom: 20px;">
       <div class="scsa-logo-container">
@@ -130,12 +156,12 @@
       </thead>
       <tbody id="deck-tbody"></tbody>
     </table>
-    
+
     <div class="back-wrapper">
       <a href="index.html" class="back-button">🏠 돌아가기</a>
     </div>
-    
   </div>
+
   <script type="module" src="pages/ListPage.js"></script>
 </body>
 </html>

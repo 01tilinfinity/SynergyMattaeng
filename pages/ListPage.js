@@ -2,6 +2,150 @@ document.addEventListener("DOMContentLoaded", () => {
   let allDecks = [];
   let currentSort = "latest"; // 기본 정렬 기준
 
+  // ✅ 로그인/회원가입 or 사용자 이름 렌더링 함수 추가
+  function renderAuthArea() {
+    const authArea = document.getElementById("auth-area");
+    const username = sessionStorage.getItem("username");
+
+    if (username) {
+      authArea.innerHTML = `
+        <span id="my-nickname" style="font-weight: bold; cursor: pointer; text-decoration: underline;">${username}</span> 님
+        <button id="logout-btn">로그아웃</button>
+      `;
+      document.getElementById("logout-btn").addEventListener("click", () => {
+        sessionStorage.removeItem("username");
+        renderAuthArea();
+        alert("로그아웃 되었습니다!");
+      });
+
+      // ✅ 닉네임 클릭 시 마이페이지로 이동
+      document.getElementById("my-nickname").addEventListener("click", () => {
+        window.location.href = "mypage.html";
+      });
+
+    } else {
+      authArea.innerHTML = `
+        <button id="login-btn">로그인</button>
+        <button id="signup-btn">회원가입</button>
+      `;
+      document.getElementById("login-btn").addEventListener("click", showLoginModal);
+      document.getElementById("signup-btn").addEventListener("click", showSignupModal);
+    }
+  }
+
+  function showLoginModal() {
+    const modal = document.createElement("div");
+    modal.className = "modal-overlay";
+    modal.innerHTML = `
+      <div class="modal">
+        <h3>로그인</h3>
+        <input type="text" id="login-username" placeholder="아이디" />
+        <input type="password" id="login-password" placeholder="비밀번호" />
+        <button id="login-submit">로그인</button>
+        <button id="login-cancel">취소</button>
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    document.getElementById("login-submit").addEventListener("click", () => {
+      const username = document.getElementById("login-username").value;
+      const password = document.getElementById("login-password").value;
+
+      fetch("http://localhost:8080/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      })
+        .then((res) => {
+          if (!res.ok) throw new Error("HTTP 오류");
+          return res.json();
+        })
+        .then((data) => {
+          if (data.status === "ok") {
+            sessionStorage.setItem("username", username);
+            renderAuthArea();
+            document.body.removeChild(modal);
+            alert("로그인 성공!");
+          } else {
+            throw new Error("로그인 실패");
+          }
+        })
+        .catch(() => alert("로그인 실패!"));
+    });
+
+    document.getElementById("login-cancel").addEventListener("click", () => {
+      document.body.removeChild(modal);
+    });
+  }
+
+  function showSignupModal() {
+    const modal = document.createElement("div");
+    modal.className = "modal-overlay";
+    modal.innerHTML = `
+      <div class="modal">
+        <h3>회원가입</h3>
+        <input type="text" id="signup-username" placeholder="아이디" />
+        <div id="username-error" class="error-msg" style="color: red; font-size: 13px; display: none;"></div>
+
+        <input type="password" id="signup-password" placeholder="비밀번호" />
+        <input type="password" id="signup-password-confirm" placeholder="비밀번호 확인" />
+        <div id="password-error" class="error-msg" style="color: red; font-size: 13px; display: none;"></div>
+
+        <button id="signup-submit">가입하기</button>
+        <button id="signup-cancel">취소</button>
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    const usernameInput = document.getElementById("signup-username");
+    const passwordInput = document.getElementById("signup-password");
+    const confirmInput = document.getElementById("signup-password-confirm");
+    const usernameError = document.getElementById("username-error");
+    const passwordError = document.getElementById("password-error");
+
+    document.getElementById("signup-submit").addEventListener("click", () => {
+      const username = usernameInput.value.trim();
+      const password = passwordInput.value;
+      const confirm = confirmInput.value;
+
+      usernameError.style.display = "none";
+      passwordError.style.display = "none";
+
+      if (password !== confirm) {
+        passwordError.textContent = "비밀번호가 달라요.";
+        passwordError.style.display = "block";
+        return;
+      }
+
+      fetch("http://localhost:8080/api/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      })
+        .then(async (res) => {
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.message || "회원가입 실패");
+          alert("회원가입 성공! 로그인 해주세요.");
+          document.body.removeChild(modal);
+        })
+        .catch((err) => {
+          if (err.message === "이미 존재하는 닉네임입니다.") {
+            usernameError.textContent = err.message;
+            usernameError.style.display = "block";
+          } else {
+            alert("회원가입 실패");
+          }
+        });
+    });
+
+    document.getElementById("signup-cancel").addEventListener("click", () => {
+      document.body.removeChild(modal);
+    });
+  }
+
+  // ✅ 실행
+  renderAuthArea();
+
   const fetchAndRenderDecks = () => {
     fetch("http://localhost:8080/api/decks")
       .then((res) => res.json())
@@ -37,11 +181,9 @@ document.addEventListener("DOMContentLoaded", () => {
     decks.forEach((deck, index) => {
       const row = document.createElement("tr");
 
-      // 번호
       const numberCell = document.createElement("td");
       numberCell.textContent = decks.length - index;
 
-      // 덱 제목
       const titleCell = document.createElement("td");
       const titleLink = document.createElement("a");
       titleLink.href = `doc.html?id=${deck.id}`;
@@ -53,16 +195,13 @@ document.addEventListener("DOMContentLoaded", () => {
       titleLink.addEventListener("mouseout", () => titleLink.style.textDecoration = "none");
       titleCell.appendChild(titleLink);
 
-      // 작성자
       const authorCell = document.createElement("td");
       authorCell.textContent = deck.username;
 
-      // 작성일
       const dateCell = document.createElement("td");
       const formattedDate = new Date(deck.createdAt).toLocaleDateString();
       dateCell.textContent = formattedDate;
 
-      // ✅ 추천 수
       const likeCell = document.createElement("td");
       likeCell.textContent = deck.likes ?? 0;
 
@@ -76,7 +215,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // 🔍 검색 필터링 기능 추가
   const searchInput = document.getElementById("search-input");
   searchInput.addEventListener("input", () => {
     const keyword = searchInput.value.toLowerCase();
@@ -88,7 +226,6 @@ document.addEventListener("DOMContentLoaded", () => {
     renderDecks(filtered);
   });
 
-  // ✅ [추가] 검색 버튼 클릭 시도 동일한 필터링 수행
   const searchBtn = document.getElementById("search-btn");
   if (searchBtn) {
     searchBtn.addEventListener("click", () => {
@@ -102,7 +239,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ✅ 정렬 버튼 이벤트 추가
   const latestBtn = document.getElementById("sort-latest");
   const likesBtn = document.getElementById("sort-likes");
   const nameBtn = document.getElementById("sort-name");

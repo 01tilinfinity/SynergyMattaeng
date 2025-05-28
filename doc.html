@@ -13,22 +13,27 @@
       gap: 10px;
     }
 
+    /* 버튼 스타일 오버라이딩 */
     #nav-buttons a,
     #nav-buttons button {
-      padding: 10px 20px;
-      background-color: #333446;  /* ✅ 배경색 수정 */
-      color: white;               /* ✅ 글자색 흰색 */
-      border: none;
-      border-radius: 12px;        /* ✅ 더 둥근 모서리 */
-      font-size: 16px;
-      text-decoration: none;
-      cursor: pointer;
+      all: unset; /* 기본 버튼 스타일 제거 */
+      display: inline-block;
+      padding: 8px 16px;
+      background-color: #333446;
+      color: white;
+      border-radius: 20px;
+      font-size: 14px;
       font-family: "Pretendard-Regular", sans-serif;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s ease;
     }
 
     #nav-buttons a:hover,
     #nav-buttons button:hover {
       background-color: #2a2b3a;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      transform: translateY(-1px);
     }
 
     #likes-count {
@@ -43,7 +48,7 @@
 <body>
   <div id="app"></div>
 
-  <!-- ✅ 버튼들 -->
+  <!-- ✅ 버튼 영역 -->
   <div id="nav-buttons">
     <a href="list.html">🏠 목록으로</a>
     <button id="like-button" style="display: none;">❤️ 추천하기</button>
