@@ -27,11 +27,24 @@
     td a:hover {
       text-decoration: underline;
     }
+
+    /* 🔍 검색창 스타일 */
+    #search-input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+    }
   </style>
 </head>
 <body>
   <div id="app">
     <h1>등록된 덱 목록</h1>
+
+    <!-- ✅ 검색창 추가 -->
+    <input id="search-input" type="text" placeholder="덱 제목 또는 작성자 검색" />
+
     <table>
       <thead>
         <tr>
@@ -44,6 +57,7 @@
       </thead>
       <tbody id="deck-tbody"></tbody>
     </table>
+    
     <p><a href="index.html">🏠 돌아가기</a></p>
   </div>
   <script type="module" src="pages/ListPage.js"></script>
