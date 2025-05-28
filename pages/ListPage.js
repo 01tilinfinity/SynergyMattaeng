@@ -1,18 +1,33 @@
 document.addEventListener("DOMContentLoaded", () => {
   let allDecks = [];
+  let currentSort = "latest"; // 기본 정렬 기준
 
   const fetchAndRenderDecks = () => {
     fetch("http://localhost:8080/api/decks")
       .then((res) => res.json())
       .then((decks) => {
         allDecks = decks;
-        renderDecks(decks);
+        applySortAndRender();
       })
       .catch((err) => {
         console.error("덱 불러오기 실패:", err);
         const tbody = document.getElementById("deck-tbody");
         tbody.innerHTML = "<tr><td colspan='5'>덱 목록을 불러오는 데 실패했습니다.</td></tr>";
       });
+  };
+
+  const applySortAndRender = () => {
+    const decks = [...allDecks];
+
+    if (currentSort === "latest") {
+      decks.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    } else if (currentSort === "likes") {
+      decks.sort((a, b) => (b.likes ?? 0) - (a.likes ?? 0));
+    } else if (currentSort === "name") {
+      decks.sort((a, b) => a.name.localeCompare(b.name, "ko"));
+    }
+
+    renderDecks(decks);
   };
 
   const renderDecks = (decks) => {
@@ -84,6 +99,32 @@ document.addEventListener("DOMContentLoaded", () => {
           deck.username.toLowerCase().includes(keyword)
       );
       renderDecks(filtered);
+    });
+  }
+
+  // ✅ 정렬 버튼 이벤트 추가
+  const latestBtn = document.getElementById("sort-latest");
+  const likesBtn = document.getElementById("sort-likes");
+  const nameBtn = document.getElementById("sort-name");
+
+  if (latestBtn) {
+    latestBtn.addEventListener("click", () => {
+      currentSort = "latest";
+      applySortAndRender();
+    });
+  }
+
+  if (likesBtn) {
+    likesBtn.addEventListener("click", () => {
+      currentSort = "likes";
+      applySortAndRender();
+    });
+  }
+
+  if (nameBtn) {
+    nameBtn.addEventListener("click", () => {
+      currentSort = "name";
+      applySortAndRender();
     });
   }
 

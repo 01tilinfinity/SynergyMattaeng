@@ -44,7 +44,7 @@
     #search-btn {
       padding: 10px 16px;
       font-size: 16px;
-      background-color:  #333446;
+      background-color: #333446;
       color: white;
       border: none;
       cursor: pointer;
@@ -72,6 +72,27 @@
       transform: skewX(20deg);
       display: inline-block;
     }
+
+    /* 🎯 정렬 버튼 */
+    .sort-buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .sort-buttons button {
+      padding: 8px 14px;
+      font-size: 15px;
+      background-color: #333446;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .sort-buttons button:hover {
+      background-color: #2b2c3b;
+    }
   </style>
 </head>
 <body>
@@ -88,6 +109,13 @@
     <div style="display: flex; gap: 10px; margin-bottom: 20px;">
       <input id="search-input" type="text" placeholder="덱 제목 또는 작성자 검색" />
       <button id="search-btn">검색</button>
+    </div>
+
+    <!-- ✅ 정렬 버튼 -->
+    <div class="sort-buttons">
+      <button id="sort-latest">🆕 최신순</button>
+      <button id="sort-likes">❤️ 추천순</button>
+      <button id="sort-name">🔤 이름순</button>
     </div>
 
     <table>
