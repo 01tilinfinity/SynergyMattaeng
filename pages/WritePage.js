@@ -565,9 +565,31 @@ async function ensureTraitsAndRenderAll() {
 }
 
 function renderSubmitButton() {
+  const wrapper = document.createElement("div");
+  wrapper.style.display = "flex";
+  wrapper.style.justifyContent = "center";
+  wrapper.style.marginTop = "30px";
+
   const button = document.createElement("button");
   button.textContent = "덱 등록하기";
-  button.style.marginTop = "20px";
+  button.style.padding = "12px 24px";
+  button.style.fontSize = "16px";
+  button.style.borderRadius = "12px";
+  button.style.fontWeight = "bold";
+  button.style.backgroundColor = "#207ac7";
+  button.style.color = "white";
+  button.style.border = "none";
+  button.style.cursor = "pointer";
+  button.style.fontFamily = "'Pretendard-Regular', sans-serif";
+  button.style.transition = "background-color 0.2s";
+
+  button.addEventListener("mouseover", () => {
+    button.style.backgroundColor = "#145a99";
+  });
+  button.addEventListener("mouseout", () => {
+    button.style.backgroundColor = "#207ac7";
+  });
+
   button.addEventListener("click", () => {
     const deckName = document.getElementById("deck-name").value.trim();
     const username = sessionStorage.getItem("username");
@@ -575,11 +597,10 @@ function renderSubmitButton() {
     if (!deckName) return alert("덱 이름을 입력하세요!");
     if (selectedChampions.length === 0) return alert("챔피언을 선택하세요!");
 
-    // 등록 시 → champions를 문자열이 아니라 배열로 그대로 보내야 함
     const deck = {
       name: deckName,
       username,
-      champions: selectedChampions.map((c) => c.id), // ✅ JSON.stringify 제거
+      champions: selectedChampions.map((c) => c.id),
     };
 
     fetch("http://localhost:8080/api/decks", {
@@ -595,5 +616,8 @@ function renderSubmitButton() {
       .catch(() => alert("덱 등록 실패"));
   });
 
-  document.getElementById("app").appendChild(button);
+  wrapper.appendChild(button);
+  document.getElementById("app").appendChild(wrapper);
 }
+
+

@@ -12,7 +12,7 @@ export async function renderDeckDetailPage() {
   const app = document.getElementById("app");
   app.innerHTML = `
     <div id="auth-area" style="display: flex; justify-content: flex-end; margin-bottom: 10px;"></div>
-    <h1>덱 상세 보기</h1>
+    <h1 id="deck-title">덱 상세 보기</h1>
     <div id="likes-info" style="margin-bottom: 10px; font-size: 16px; font-weight: bold;"></div>
     <div id="synergy-bar" class="synergy-bar"></div>
     <div id="selected-champions" class="selected-container"></div>
@@ -32,6 +32,9 @@ export async function renderDeckDetailPage() {
 
   const res = await fetch(`http://localhost:8080/api/decks/${deckId}`);
   const deck = await res.json();
+
+  // ✅ 제목 업데이트
+  document.getElementById("deck-title").textContent = deck.name;
 
   // ✅ 추천 수 표시
   const likesInfo = document.getElementById("likes-info");
@@ -262,21 +265,5 @@ function renderAuthArea() {
     document.getElementById("signup-btn").addEventListener("click", () => alert("회원가입 기능은 index.html에서 이용해주세요."));
   }
 
-  const backButton = document.createElement("a");
-  backButton.href = "list.html";
-  backButton.textContent = "← 목록으로 돌아가기";
-  backButton.style.display = "inline-block";
-  backButton.style.marginTop = "20px";
-  backButton.style.fontWeight = "bold";
-  backButton.style.color = "#207ac7";
-  backButton.style.textDecoration = "none";
-
-  backButton.addEventListener("mouseover", () => {
-    backButton.style.textDecoration = "underline";
-  });
-  backButton.addEventListener("mouseout", () => {
-    backButton.style.textDecoration = "none";
-  });
-
-  document.getElementById("app").appendChild(backButton);
+  // ← 목록으로 돌아가기 버튼은 유지하지 않음 (요청에 따라 주석 처리된 상태)
 }

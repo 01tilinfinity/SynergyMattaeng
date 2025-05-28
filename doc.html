@@ -5,27 +5,30 @@
   <title>덱 상세 보기</title>
   <link rel="stylesheet" href="style.css" />
   <style>
+    /* 버튼 영역 스타일 (가운데 정렬 + 위 여백) */
     #nav-buttons {
-      margin: 20px 0;
+      margin: 40px 0 20px 0;
       display: flex;
+      justify-content: center;
       gap: 10px;
     }
 
     #nav-buttons a,
     #nav-buttons button {
-      padding: 8px 16px;
-      background-color: #207ac7;
-      color: white;
+      padding: 10px 20px;
+      background-color: #333446;  /* ✅ 배경색 수정 */
+      color: white;               /* ✅ 글자색 흰색 */
       border: none;
-      border-radius: 6px;
+      border-radius: 12px;        /* ✅ 더 둥근 모서리 */
       font-size: 16px;
       text-decoration: none;
       cursor: pointer;
+      font-family: "Pretendard-Regular", sans-serif;
     }
 
     #nav-buttons a:hover,
     #nav-buttons button:hover {
-      background-color: #155a96;
+      background-color: #2a2b3a;
     }
 
     #likes-count {
@@ -33,13 +36,14 @@
       font-size: 16px;
       font-weight: bold;
       color: #333;
+      text-align: center;
     }
   </style>
 </head>
 <body>
   <div id="app"></div>
 
-  <!-- 🔙 목록으로 & ❤️ 추천 버튼 영역 -->
+  <!-- ✅ 버튼들 -->
   <div id="nav-buttons">
     <a href="list.html">🏠 목록으로</a>
     <button id="like-button" style="display: none;">❤️ 추천하기</button>
