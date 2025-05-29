@@ -1,167 +1,181 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8" />
-  <title>덱 목록</title>
-  <link rel="stylesheet" href="style.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <title>덱 목록</title>
+    <link rel="stylesheet" href="style.css" />
 
-  <!-- ✅ Roboto Condensed 폰트 추가 -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+    <!-- ✅ Roboto Condensed 폰트 추가 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap"
+      rel="stylesheet"
+    />
 
-  <style>
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    thead {
-      background-color: #000;
-      color: #fff;
-      font-size: 18px;
-    }
-    th, td {
-      padding: 12px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-    }
-    td a {
-      text-decoration: none;
-      color: #207ac7;
-      font-weight: bold;
-    }
-    td a:hover {
-      text-decoration: underline;
-    }
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      thead {
+        background-color: #000;
+        color: #fff;
+        font-size: 18px;
+      }
+      th,
+      td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      td a {
+        text-decoration: none;
+        color: #207ac7;
+        font-weight: bold;
+      }
+      td a:hover {
+        text-decoration: underline;
+      }
 
-    /* 🔍 검색창 + 버튼 스타일 */
-    #search-input {
-      flex: 1;
-      padding: 10px;
-      font-size: 16px;
-      box-sizing: border-box;
-    }
-    #search-btn {
-      padding: 10px 16px;
-      font-size: 16px;
-      background-color: #333446;
-      color: white;
-      border: none;
-      cursor: pointer;
-      border-radius: 4px;
-    }
+      /* 🔍 검색창 + 버튼 스타일 */
+      #search-input {
+        height: 45px;
+        flex: 1;
+        padding: 10px;
+        font-size: 17px;
+        box-sizing: border-box;
+      }
 
-    /* 🌟 삼성 스타일 로고 */
-    .scsa-logo-container {
-      background-color: #1428a0;
-      color: white;
-      font-weight: bold;
-      font-size: 24px;
-      font-family: 'Roboto Condensed', sans-serif;
-      padding: 10px 30px;
-      border-radius: 50% / 50%;
-      transform: skewX(-20deg);
-      margin-right: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 48px;
-    }
+      #search-btn {
+        height: 45px; /* ✅ 입력창과 높이 맞추기 */
+        padding: 10px 25px;
+        font-size: 17px;
+        font-weight: 600;
+        background-color: #333446;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+      }
 
-    .scsa-logo-container span {
-      transform: skewX(20deg);
-      display: inline-block;
-    }
+      /* 🌟 삼성 스타일 로고 */
+      .scsa-logo-container {
+        background-color: #1428a0;
+        color: white;
+        font-weight: bold;
+        font-size: 24px;
+        font-family: "Roboto Condensed", sans-serif;
+        padding: 10px 30px;
+        border-radius: 50% / 50%;
+        transform: skewX(-20deg);
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 48px;
+      }
 
-    /* 🎯 정렬 버튼 */
-    .sort-buttons {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
+      .scsa-logo-container span {
+        transform: skewX(20deg);
+        display: inline-block;
+      }
 
-    .sort-buttons button {
-      padding: 8px 14px;
-      font-size: 15px;
-      background-color: #333446;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
+      /* 🎯 정렬 버튼 */
+      .sort-buttons {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
 
-    .sort-buttons button:hover {
-      background-color: #2b2c3b;
-    }
+      .sort-buttons button {
+        padding: 8px 14px;
+        font-size: 15px;
+        background-color: #333446;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
 
-    /* ✅ 로그인 상태 표시 영역 */
-    #auth-area {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-
-    #auth-area button {
-      padding: 6px 10px;
-      font-size: 14px;
-      border: none;
-      border-radius: 6px;
-      background-color: #333446;
-      color: white;
-      cursor: pointer;
-    }
-
-    #auth-area button:hover {
-      background-color: #2a2b3a;
-    }
-  </style>
-</head>
-<body>
-  <div id="app">
-    <!-- ✅ 로그인 상태 영역 -->
-    <div id="auth-area"></div>
-
-    <!-- ✅ 삼성 스타일 로고 + 제목 -->
-    <div style="display: flex; align-items: center; margin-bottom: 20px;">
-      <div class="scsa-logo-container">
-        <span>SynergyMattaeng</span>
+      .sort-buttons button:hover {
+        background-color: #2b2c3b;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ✅ 최상단 로그인/회원가입 버튼 영역 -->
+    <div style="display: flex; justify-content: center; padding: 10px 0">
+      <div
+        style="
+          width: 1000px;
+          display: flex;
+          justify-content: flex-end;
+          gap: 10px;
+        "
+      >
+        <div id="auth-area" style="display: flex"></div>
       </div>
-      <h1 style="margin: 0;">등록된 덱 목록</h1>
     </div>
 
-    <!-- ✅ 검색창 + 버튼 -->
-    <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-      <input id="search-input" type="text" placeholder="덱 제목 또는 작성자 검색" />
-      <button id="search-btn">검색</button>
+    <div id="app">
+      <!-- ✅ 로고 + 제목: 아래쪽 좌측 -->
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          margin-bottom: 20px;
+          padding-left: 20px;
+        "
+      >
+        <div class="scsa-logo-container">
+          <span>SynergyMattaeng</span>
+        </div>
+        <h1 style="margin: 0">등록된 덱 목록</h1>
+      </div>
+
+      <!-- ✅ 검색창 + 버튼 -->
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          margin-bottom: 20px;
+        "
+      >
+        <input
+          id="search-input"
+          type="text"
+          placeholder="덱 이름 또는 작성자 검색"
+        />
+        <button id="search-btn">검색</button>
+      </div>
+
+      <!-- ✅ 정렬 버튼 -->
+      <div class="sort-buttons">
+        <button id="sort-latest">🆕 최신순</button>
+        <button id="sort-likes">❤️ 추천순</button>
+        <button id="sort-name">🔤 이름순</button>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>번호</th>
+            <th>덱 제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+            <th>추천수</th>
+          </tr>
+        </thead>
+        <tbody id="deck-tbody"></tbody>
+      </table>
+
+      <div class="back-wrapper">
+        <a href="index.html" class="back-button">덱 등록하러 가기</a>
+      </div>
     </div>
 
-    <!-- ✅ 정렬 버튼 -->
-    <div class="sort-buttons">
-      <button id="sort-latest">🆕 최신순</button>
-      <button id="sort-likes">❤️ 추천순</button>
-      <button id="sort-name">🔤 이름순</button>
-    </div>
-
-    <table>
-      <thead>
-        <tr>
-          <th>번호</th>
-          <th>덱 제목</th>
-          <th>작성자</th>
-          <th>작성일</th>
-          <th>추천수</th>
-        </tr>
-      </thead>
-      <tbody id="deck-tbody"></tbody>
-    </table>
-
-    <div class="back-wrapper">
-      <a href="index.html" class="back-button">덱 등록하러 가기</a>
-    </div>
-  </div>
-
-  <script type="module" src="pages/ListPage.js"></script>
-</body>
+    <script type="module" src="pages/ListPage.js"></script>
+  </body>
 </html>

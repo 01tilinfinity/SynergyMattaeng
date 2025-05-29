@@ -408,11 +408,12 @@ export async function renderWritePage() {
         placeholder="덱 이름을 입력하세요"
         style="
           padding: 14px 20px;
-          font-size: 16px;
+          font-size: 20px;
           border: 3px solid #1428a0;
           border-radius: 12px;
-          width: 80%;
-          max-width: 800px;
+          text-align: center;
+          width: 100%;
+          max-width: 1000px;
           box-sizing: border-box;
         "
       />
@@ -433,9 +434,13 @@ export async function renderWritePage() {
   renderChampionList(); // 🔹 정렬된 챔피언 렌더링
   renderSynergyBar();
   renderSubmitButton(); // 덱 등록 버튼 추가
+
+  const paddingDiv = document.createElement("div");
+  paddingDiv.style.height = "100px"; // 👈 플로팅 버튼이 가리지 않도록 여유 공간 확보
+  document.getElementById("app").appendChild(paddingDiv);
+
+  renderScrollToTopButton();
 }
-
-
 
 function renderSynergyBar() {
   const synergyBar = document.getElementById("synergy-bar");
@@ -565,30 +570,9 @@ async function ensureTraitsAndRenderAll() {
 }
 
 function renderSubmitButton() {
-  const wrapper = document.createElement("div");
-  wrapper.style.display = "flex";
-  wrapper.style.justifyContent = "center";
-  wrapper.style.marginTop = "30px";
-
   const button = document.createElement("button");
+  button.id = "deck-submit-float";
   button.textContent = "덱 등록하기";
-  button.style.padding = "12px 24px";
-  button.style.fontSize = "16px";
-  button.style.borderRadius = "12px";
-  button.style.fontWeight = "bold";
-  button.style.backgroundColor = "#207ac7";
-  button.style.color = "white";
-  button.style.border = "none";
-  button.style.cursor = "pointer";
-  button.style.fontFamily = "'Pretendard-Regular', sans-serif";
-  button.style.transition = "background-color 0.2s";
-
-  button.addEventListener("mouseover", () => {
-    button.style.backgroundColor = "#145a99";
-  });
-  button.addEventListener("mouseout", () => {
-    button.style.backgroundColor = "#207ac7";
-  });
 
   button.addEventListener("click", () => {
     const deckName = document.getElementById("deck-name").value.trim();
@@ -616,8 +600,24 @@ function renderSubmitButton() {
       .catch(() => alert("덱 등록 실패"));
   });
 
-  wrapper.appendChild(button);
-  document.getElementById("app").appendChild(wrapper);
+  document.body.appendChild(button);
 }
 
+function renderScrollToTopButton() {
+  const btn = document.createElement("button");
+  btn.id = "scroll-to-top";
+  btn.textContent = "↑";
+  document.body.appendChild(btn);
 
+  btn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      btn.style.display = "flex";
+    } else {
+      btn.style.display = "none";
+    }
+  });
+}

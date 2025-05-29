@@ -6,6 +6,7 @@
   font-style: normal;
 }
 
+input,
 body {
   font-family: "Pretendard-Regular", sans-serif;
   margin: 20px;
@@ -23,7 +24,8 @@ body {
   width: 100%;
   max-width: 400px;
   font-size: 16px;
-  margin-bottom: 20px;
+  margin-top: 0px;
+  margin-bottom: 30px;
 }
 
 /* 선택된 챔피언 영역 */
@@ -417,14 +419,14 @@ body {
   padding: 8px;
   font-weight: bold;
   cursor: pointer;
-  background-color: #11b288;
+  background-color: #1428a0;
   border: none;
   color: white;
   border-radius: 4px;
 }
 
 .modal button:hover {
-  background-color: #0f9b75;
+  background-color: #1428a0;
 }
 
 button {
@@ -434,8 +436,8 @@ button {
   color: white;
   padding: 5px 10px;
   border: none;
-  border-radius: 10px;
-  font-size: 12px;
+  border-radius: 12px;
+  font-size: 13px;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
@@ -445,13 +447,13 @@ button:hover {
 }
 
 .active-sort-button {
-  background-color: #207ac7;
+  background-color: #1428a0;
   color: white;
   font-weight: 600;
 }
 
 #auth-area > button {
-  margin-left: 6px;
+  margin-left: 7px;
 }
 
 .trait-group {
@@ -530,12 +532,60 @@ button:hover {
   font-size: 18px;
   font-weight: bold;
   color: white;
-  background-color:  #333446;
+  background-color: #1428a0;
   border-radius: 12px;
   text-decoration: none;
   transition: background-color 0.2s;
 }
 
 .back-button:hover {
-  background-color: #145a99;
+  background-color: #687be9;
+}
+
+#scroll-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #1428a0;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+  font-size: 27px;
+  font-weight: bold;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.2s ease;
+}
+
+#scroll-to-top:hover {
+  background-color: #687be9;
+}
+
+#deck-submit-float {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 14px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #1429a0e7;
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-family: "Pretendard-Regular", sans-serif;
+  cursor: pointer;
+  z-index: 999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.2s ease;
+}
+
+#deck-submit-float:hover {
+  background-color: #687be9e7;
 }
