@@ -76,6 +76,7 @@
 ## ▶️ 실행 방법 (백엔드 서버 실행)
 
 ```bash
+net start MySQL80
 cd backend
 gradlew clean build
 gradlew bootRun
