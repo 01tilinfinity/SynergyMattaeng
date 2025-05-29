@@ -164,7 +164,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const decks = [...allDecks];
 
     if (currentSort === "latest") {
-      decks.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      // ✅ 시간, 분, 초까지 고려한 최신순 정렬
+      decks.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
     } else if (currentSort === "likes") {
       decks.sort((a, b) => (b.likes ?? 0) - (a.likes ?? 0));
     } else if (currentSort === "name") {

@@ -1,7 +1,7 @@
 // 🔧 Deck.java (Entity 클래스 전체)
 package com.synergy.backend.domain;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,7 +18,7 @@ public class Deck {
 
     private String name;
     private String username;
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
     @Lob
     private String champions;
@@ -35,8 +35,8 @@ public class Deck {
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
 
-    public LocalDate getCreatedAt() { return createdAt; }
-    public void setCreatedAt(LocalDate createdAt) { this.createdAt = createdAt; }
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 
     public String getChampions() { return champions; }
     public void setChampions(String champions) { this.champions = champions; }

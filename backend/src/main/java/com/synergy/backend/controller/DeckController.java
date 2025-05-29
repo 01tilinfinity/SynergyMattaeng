@@ -1,6 +1,6 @@
 package com.synergy.backend.controller;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -40,7 +40,7 @@ public class DeckController {
             Deck deck = new Deck();
             deck.setName(name);
             deck.setUsername(username);
-            deck.setCreatedAt(LocalDate.now());
+            deck.setCreatedAt(LocalDateTime.now());
 
             // List → JSON 문자열
             String championsJson = objectMapper.writeValueAsString(champions);
